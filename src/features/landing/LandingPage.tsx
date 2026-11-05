@@ -85,9 +85,6 @@ export default function LandingPage() {
             >
               {t.hero.cta}
             </Link>
-            <Link to="/gacha?demo" className="lp-btn lp-btn--ghost">
-              {t.hero.demo}
-            </Link>
           </div>
           <p className="lp-coin">
             <img src="/assets/coin.png" alt="" width={22} height={22} />

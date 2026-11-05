@@ -8,7 +8,8 @@ DIR="$(cd "$(dirname "$0")/.." && pwd)/public/assets"
 mkdir -p "$DIR"
 B="https://www.figma.com/api/mcp/asset"
 
-dl() { # dl <파일명> <에셋ID+확장자>
+dl() { # dl <파일명> <에셋ID+확장자>  (이미 받은 파일은 건너뜀)
+  if [ -s "$DIR/$1" ]; then echo "= $1"; return; fi
   echo "↓ $1"
   curl -f -sS -L -o "$DIR/$1" "$B/$2"
 }
@@ -47,5 +48,14 @@ dl popup-map-seodaemun.png 23ac34a2-9f5e-4686-b966-6c6e3e42794b.png
 dl popup-pin.svg          9cc0dd7d-e5dc-4be9-8bf6-05d885e94e41.svg
 dl popup-divider.svg      ff3e0bf5-c4a8-4ccb-af5b-136aa7fb0801.svg
 dl popup-arrow.svg        cd6481fc-669d-464b-afd6-742ed86f2ba1.svg
+
+# ── 로드맵 (최종 GUI 164:4693) ─────────────────────────────
+dl roadmap-road.png        148760a1-a2a5-4dd4-baf8-dcaff933582b.png   # image 14 (길)
+dl roadmap-places.png      8d6bb195-fe37-4751-b060-d625aff86672.png   # image 13 (장소 아이콘 스프라이트)
+dl roadmap-lock.svg        01810d79-7f82-4626-9cfc-b9727ce1d22e.svg   # Group 62 (자물쇠)
+# roadmap-map-seodaemun.webp 는 원본(4df4cfbb...png, 1024px)을 918px webp로 줄여서 저장소에 직접 넣음
+dl roadmap-pin.svg         24ac7d9e-20be-4cbc-b0c0-964035d74c41.svg
+dl roadmap-banner.png      5ae9cb24-6837-40ea-bec0-af51f37da4fd.png   # 164:4708 (@2x)
+dl roadmap-back.png        41acbc71-245c-4fc2-9059-db46da6b5e7e.png   # 164:4798 "가챠 화면으로" (@2x)
 
 echo "✅ 완료: $DIR"

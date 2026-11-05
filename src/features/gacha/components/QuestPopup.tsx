@@ -1,6 +1,13 @@
 import { Fragment } from 'react'
 import type { RegionDetail, StageSummary } from '../api/types'
-import { DEFAULT_POPUP_MAP, POPUP_MAPS, splitPlace } from '../data/regions'
+import {
+  DEFAULT_POPUP_MAP,
+  POPUP_MAPS,
+  POPUP_PLACES,
+  DESIGN_CATEGORY,
+  regionMessage,
+  splitPlace,
+} from '../data/regions'
 
 type Props = {
   region: RegionDetail
@@ -14,14 +21,16 @@ export default function QuestPopup({ region, onSelectStage, onClose }: Props) {
   const stages = [...region.stages].sort((a, b) => a.orderNo - b.orderNo)
   const firstOpen = stages.find((s) => !s.cleared)
   const mapInfo = POPUP_MAPS[region.name] ?? DEFAULT_POPUP_MAP
-  const category = (firstOpen ?? stages[0])?.categoryLabel
+  const category = DESIGN_CATEGORY[region.name] ?? (firstOpen ?? stages[0])?.categoryLabel
+  // 디자인 카드가 있으면 그대로, 없으면 서버 stage로 같은 모양 카드 생성
+  const cards =
+    POPUP_PLACES[region.name] ??
+    stages.map((st) => {
+      const { title, spot } = splitPlace(st.place)
+      return { type: title, spots: [spot ?? st.place] }
+    })
 
-  const message =
-    region.status === 'CONQUERED' || !firstOpen
-      ? `“${region.name}를 모두 정복했어! 다시 둘러봐도 좋아”`
-      : firstOpen === stages[0]
-        ? `“${region.name}의 ${firstOpen.categoryLabel} 퀘스트가 열렸어. 첫 장소를 확인해 봐”`
-        : `“다음은 ${splitPlace(firstOpen.place).title}! 계속 가 보자”`
+  const message = regionMessage(region)
 
   return (
     <div className="overlay" role="dialog" aria-modal aria-label={`${region.name} 퀘스트`} onClick={onClose}>
@@ -50,12 +59,12 @@ export default function QuestPopup({ region, onSelectStage, onClose }: Props) {
         </div>
 
         <div className="places">
-          {stages.length === 0 && <p className="places__empty">아직 등록된 장소가 없어요</p>}
-          {stages.map((s, i) => {
-            const { title, spot } = splitPlace(s.place)
-            const selectable = s.cleared || s === firstOpen
+          {cards.length === 0 && <p className="places__empty">아직 등록된 장소가 없어요</p>}
+          {cards.map((card, i) => {
+            const stage: StageSummary | undefined = stages[i]
+            const selectable = !!stage && (stage.cleared || stage === firstOpen)
             return (
-              <Fragment key={s.id}>
+              <Fragment key={card.type}>
                 {i > 0 && (
                   <span className="places__arrow" aria-hidden>
                     <span className="places__arrow-inner">
@@ -64,29 +73,20 @@ export default function QuestPopup({ region, onSelectStage, onClose }: Props) {
                   </span>
                 )}
                 <button
-                  className={`place ${s.cleared ? 'is-cleared' : ''}`}
-                  onClick={() => onSelectStage(s)}
+                  className="place"
+                  onClick={() => stage && onSelectStage(stage)}
                   disabled={!selectable}
-                  title={selectable ? undefined : '앞 장소를 먼저 완료해 주세요'}
+                  title={!stage ? '준비 중인 장소예요' : selectable ? undefined : '앞 장소를 먼저 완료해 주세요'}
                 >
-                  <span className="place__type">{title}</span>
+                  <span className="place__type">{card.type}</span>
                   <span className="place__divider">
                     <img src="/assets/popup-divider.svg" alt="" />
                   </span>
                   <ul className="place__spots">
-                    {spot && <li className="place__spot-main">{spot}</li>}
-                    {s.quests
-                      .slice()
-                      .sort((a, b) => a.orderNo - b.orderNo)
-                      .map((q) => (
-                        <li key={q.id} className={q.status === 'COMPLETED' ? 'is-done' : ''}>
-                          {q.title}
-                        </li>
-                      ))}
+                    {card.spots.map((spot) => (
+                      <li key={spot}>{spot}</li>
+                    ))}
                   </ul>
-                  <span className="place__progress">
-                    {s.cleared ? '완료' : `${s.completedQuests}/${s.totalQuests}`}
-                  </span>
                 </button>
               </Fragment>
             )

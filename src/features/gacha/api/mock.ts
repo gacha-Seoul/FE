@@ -29,7 +29,6 @@ const INITIAL_COINS = 10
 const GACHA_COST = 1
 const CONQUER_BONUS = 2
 const FIRST_REGION = 'SEODAEMUN'
-const STORE_KEY = 'gacha-seoul:mock-db'
 
 /* ───────────── 콘텐츠 ───────────── */
 type QuestDef = {
@@ -132,7 +131,7 @@ const REGIONS: RegionDef[] = [
         id: 2,
         category: 'CULTURE',
         categoryLabel: '문화',
-        place: '신촌 · 이대 거리 카페',
+        place: '신촌 연세로 · 대학가 퀘스트',
         introStory: '대학가 카페에서 음료를 주문한다. 직원이 온도, 사이즈, 매장/포장, 결제를 차례로 묻는다.',
         quests: [
           q({
@@ -149,6 +148,55 @@ const REGIONS: RegionDef[] = [
               '네~ 드시고 가세요?',
               '결제는 어떻게 하시겠어요?',
               '감사합니다! 진동벨 울리면 오세요.',
+            ],
+          }),
+        ],
+      },
+      {
+        id: 201,
+        category: 'CULTURE',
+        categoryLabel: '문화',
+        place: '이대 앞 쇼핑거리 · 뷰티 스토어 퀘스트',
+        introStory: '이대 앞 화장품 가게에서 피부에 맞는 선크림을 추천받는다. (목 데이터)',
+        quests: [
+          q({
+            id: 2011,
+            code: 'Q01',
+            title: '선크림 추천받기',
+            npcRole: '뷰티 스토어 직원',
+            situation: '피부 타입을 말하고 선크림을 추천받아 산다.',
+            missions: ['찾는 물건 말하기', '피부 타입 말하기', '계산하기'],
+            opening: '어서 오세요~ 찾으시는 거 있으세요?',
+            suggestions: ['선크림 있어요?', '건성 피부예요', '이걸로 할게요'],
+            replies: [
+              '선크림은 이쪽이에요! 피부 타입이 어떻게 되세요?',
+              '그럼 이 촉촉한 제품 써 보세요.',
+              '샘플도 몇 개 넣어 드릴게요!',
+            ],
+            tip: '한국 화장품 가게에서는 계산할 때 샘플을 챙겨 주는 경우가 많아요.',
+          }),
+        ],
+      },
+      {
+        id: 202,
+        category: 'CULTURE',
+        categoryLabel: '문화',
+        place: '연희동 카페거리 · 느좋 카페 퀘스트',
+        introStory: '연희동 감성 카페에서 시그니처 메뉴를 묻고 사진 찍기 좋은 자리를 부탁한다. (목 데이터)',
+        quests: [
+          q({
+            id: 2021,
+            code: 'Q01',
+            title: '시그니처 메뉴 주문하기',
+            npcRole: '카페 사장님',
+            situation: '시그니처 메뉴를 추천받고 창가 자리를 부탁한다.',
+            missions: ['메뉴 추천 부탁하기', '주문하기', '자리 부탁하기'],
+            opening: '안녕하세요, 천천히 보고 주문해 주세요.',
+            suggestions: ['추천 메뉴가 뭐예요?', '그걸로 주세요', '창가 자리 앉아도 돼요?'],
+            replies: [
+              '흑임자 라떼가 제일 인기 많아요.',
+              '네, 흑임자 라떼 하나요!',
+              '그럼요, 창가 자리 사진 잘 나와요~',
             ],
           }),
         ],
@@ -287,23 +335,9 @@ type MockUser = UserResponse & {
 }
 type Db = { nextId: number; users: Record<number, MockUser> }
 
-const load = (): Db => {
-  try {
-    const raw = localStorage.getItem(STORE_KEY)
-    if (raw) return JSON.parse(raw) as Db
-  } catch {
-    /* noop */
-  }
-  return { nextId: 1, users: {} }
-}
-const db = load()
-const save = () => {
-  try {
-    localStorage.setItem(STORE_KEY, JSON.stringify(db))
-  } catch {
-    /* noop */
-  }
-}
+// 저장하지 않음: 새로고침하면 처음부터 (가챠를 계속 새로 뽑아볼 수 있게)
+const db: Db = { nextId: 1, users: {} }
+const save = () => {}
 
 const delay = <T>(v: () => T, ms = 250 + Math.random() * 350) =>
   new Promise<T>((resolve, reject) =>
@@ -466,14 +500,13 @@ export const mockApi = {
         const r = REGIONS.find((x) => x.id === prev.regionId)!
         return { region: regionView(u, r), coinsLeft: prev.coinsLeft, requestId }
       }
-      if (u.coins < GACHA_COST) throw new ApiError(400, '코인이 부족해요.')
-      const candidates = REGIONS.filter((r) => !u.unlocked.includes(r.id))
-      if (candidates.length === 0) throw new ApiError(400, '뽑을 수 있는 지역을 모두 열었어요.')
+      if (u.coins < GACHA_COST) u.coins = INITIAL_COINS // 목 모드: 다 쓰면 다시 채움
+      // 목 모드: 이미 뽑은 지역도 다시 나올 수 있게 전체에서 랜덤 (첫 뽑기만 서대문구)
       const pick =
-        (u.unlocked.length === 0 && candidates.find((r) => r.code === FIRST_REGION)) ||
-        candidates[Math.floor(Math.random() * candidates.length)]
+        (u.unlocked.length === 0 && REGIONS.find((r) => r.code === FIRST_REGION)) ||
+        REGIONS[Math.floor(Math.random() * REGIONS.length)]
       u.coins -= GACHA_COST
-      u.unlocked.push(pick.id)
+      if (!u.unlocked.includes(pick.id)) u.unlocked.push(pick.id)
       u.gachaRequests[requestId] = { regionId: pick.id, coinsLeft: u.coins }
       return { region: regionView(u, pick), coinsLeft: u.coins, requestId }
     }, 900),

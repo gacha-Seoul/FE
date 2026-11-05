@@ -11,8 +11,6 @@ type Props = {
   onOpenRegion: (region: MapRegion) => void
 }
 
-const BADGE: Record<string, string> = { UNLOCKED: '도전 중', CONQUERED: '정복' }
-
 // node 135:1027 — 카피 + 코인 + 후보 카드 5개 + 서울 지도
 export default function RegionBoard({ coins, highlightIdx, regionsByName, spinning, onOpenRegion }: Props) {
   return (
@@ -50,7 +48,6 @@ export default function RegionBoard({ coins, highlightIdx, regionsByName, spinni
                   <span className="card__dim" />
                   <span className="card__category">{c.category}</span>
                   <span className="card__name">{c.name}</span>
-                  {BADGE[status] && <span className={`card__badge is-${status.toLowerCase()}`}>{BADGE[status]}</span>}
                 </button>
               </li>
             )
@@ -62,11 +59,10 @@ export default function RegionBoard({ coins, highlightIdx, regionsByName, spinni
         <img className="map__img" src="/assets/seoul-map.png" alt="서울 지도" />
         <span className="map__dim" />
         {REGION_CARDS.map((c, i) => {
-          const status = regionsByName[c.name]?.status ?? 'LOCKED'
           return (
             <img
               key={c.name}
-              className={`map__pin ${highlightIdx === i ? 'is-active' : ''} is-${status.toLowerCase()}`}
+              className={`map__pin ${highlightIdx === i ? 'is-active' : ''}`}
               src="/assets/map-pin.svg"
               alt={c.name}
               style={{ left: c.pin.x, top: c.pin.y }}

@@ -9,7 +9,6 @@ export const COPY = {
       title: ['서울에서 만나는 K-문화,', '가챠로 시작하세요'],
       body: '랜덤으로 뽑힌 서울의 동네에서 시장 상인, 카페 사장님과 한국어로 대화하며 퀘스트를 완료해 보세요.',
       cta: '가챠 뽑으러 가기',
-      demo: '데모로 바로 시작',
       coin: '처음 오면 1냥을 드려요',
     },
     how: {
@@ -46,7 +45,6 @@ export const COPY = {
       title: ['Meet K-culture in Seoul,', 'one gacha at a time'],
       body: 'Draw a random Seoul neighborhood, then chat in Korean with market vendors and café owners to clear quests.',
       cta: 'Pull the gacha',
-      demo: 'Try the demo',
       coin: 'Get 1 nyang on your first visit',
     },
     how: {

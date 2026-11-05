@@ -16,7 +16,7 @@ export default function Stage({ children }: { children: ReactNode }) {
 
   return (
     <div className="gacha-app stage-viewport">
-      <div className="stage" style={{ transform: `scale(${scale})` }}>
+      <div className="stage" style={{ transform: `translate(-50%, -50%) scale(${scale})` }}>
         {children}
       </div>
     </div>

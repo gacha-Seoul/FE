@@ -1,0 +1,27 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="72.0001" height="78.2491" viewBox="0 0 72.0001 78.2491" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Group 38">
+<circle id="Ellipse 37" cx="36" cy="36.0001" r="36" fill="url(#paint0_linear_0_133)"/>
+<g id="Subtract">
+<use xlink:href="#stroke0_0_133" fill="url(#paint1_linear_0_133)"/>
+<mask id="stroke1_0_133" fill="white">
+<use xlink:href="#stroke0_0_133"/>
+</mask>
+<path d="M67.4746 27.7998C69.4151 32.2228 70.4941 37.1097 70.4941 42.2491C70.4941 62.1313 54.3764 78.2491 34.4941 78.2491C19.8163 78.2491 7.19128 69.4643 1.58691 56.8662C11.2231 59.4891 23.9165 58.6607 36.624 53.8194C51.8297 48.0262 63.1981 37.9576 67.4746 27.7998Z" stroke="#E2E2E2" mask="url(#stroke1_0_133)"/>
+</g>
+<ellipse id="Ellipse 41" cx="12.587" cy="33.2998" rx="6" ry="8.5" transform="rotate(7.27187 12.587 33.2998)" fill="#FEFDFE" fill-opacity="0.6"/>
+<path id="Line 3" d="M7.08431 23.5901C10.331 19.0468 12.339 16.9796 16.3772 14.2972" stroke-width="2" stroke-linecap="round" stroke="white" stroke-opacity="0.6"/>
+<path id="Line 4" d="M62.8798 56.7998C59.6331 61.3431 57.6251 63.4104 53.5869 66.0927" stroke-width="2" stroke-linecap="round" stroke="#D4879C"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_133" x1="3.89914e-08" y1="15.2277" x2="68" y2="21.0001" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F2ECF0"/>
+<stop offset="0.233507" stop-color="#DEDBE4"/>
+<stop offset="1" stop-color="#ABB7C9"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_133" x1="4.49414" y1="26.7491" x2="79.4941" y2="92.2491" gradientUnits="userSpaceOnUse">
+<stop stop-color="#55D559"/>
+<stop offset="1" stop-color="#6F2C3A"/>
+</linearGradient>
+<path id="stroke0_0_133" d="M67.4746 27.7998C69.4151 32.2228 70.4941 37.1097 70.4941 42.2491C70.4941 62.1313 54.3764 78.2491 34.4941 78.2491C19.8163 78.2491 7.19128 69.4643 1.58691 56.8662C11.2231 59.4891 23.9165 58.6607 36.624 53.8194C51.8297 48.0262 63.1981 37.9576 67.4746 27.7998Z"/>
+</defs>
+</svg>

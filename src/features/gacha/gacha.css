@@ -52,16 +52,16 @@
 .gacha-app.stage-viewport {
   position: fixed;
   inset: 0;
-  display: grid;
-  place-items: center;
   overflow: hidden;
 }
 
+/* 창이 1280x832보다 작아도 가운데 정렬되게 절대 위치 + translate */
 .gacha-app .stage {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
   width: 1280px;
   height: 832px;
-  flex: none;
   background: var(--bg);
   overflow: hidden;
   transform-origin: center;
@@ -362,7 +362,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill; /* Figma 이미지 채우기(Fill to frame)와 동일 */
   object-position: bottom;
 }
 
@@ -457,7 +457,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill; /* Figma 이미지 채우기(Fill to frame)와 동일 */
   object-position: bottom;
 }
 .gacha-app .popup__pin {
@@ -638,35 +638,6 @@
   filter: hue-rotate(90deg) saturate(0.6);
 }
 
-/* 팝업 장소 카드 (서버 데이터용 보조 스타일) */
-.gacha-app .place.is-cleared {
-  background: #d8c48f;
-}
-.gacha-app .place:disabled {
-  cursor: not-allowed;
-  opacity: 0.75;
-}
-.gacha-app .place__spots {
-  font-size: 15px;
-}
-.gacha-app .place__spots .place__spot-main {
-  font-size: 18px;
-  list-style: none;
-  margin-left: -14px;
-  margin-bottom: 4px;
-  color: var(--text90);
-}
-.gacha-app .place__spots li.is-done {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-.gacha-app .place__progress {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  font-size: 14px;
-  color: var(--paper-line);
-}
 .gacha-app .places__empty {
   font-size: 18px;
   color: var(--text100);
@@ -1312,4 +1283,405 @@
   background: rgba(62, 88, 104, 0.85);
   border-radius: 6px;
   pointer-events: none;
+}
+
+/* 잠긴 장소 카드: 디자인과 같은 모양 유지, 커서만 */
+.gacha-app .place:disabled {
+  cursor: not-allowed;
+}
+
+/* ────────────────────────────────────────────────
+   로드맵 2-1 (최종 GUI 164:4693)
+   ──────────────────────────────────────────────── */
+.gacha-app .roadmap {
+  position: absolute;
+  inset: 0;
+}
+
+.gacha-app .roadmap__road {
+  left: 515px;
+  top: 258px;
+  width: 735px;
+  height: 675px;
+  overflow: hidden;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.gacha-app .roadmap__road img {
+  position: absolute;
+  left: 0;
+  top: -25.8%;
+  width: 100%;
+  height: 125.83%;
+}
+
+.gacha-app .roadmap__title {
+  position: absolute;
+  left: 102px;
+  top: 123px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text90);
+  white-space: nowrap;
+}
+.gacha-app .roadmap__region {
+  font-size: 28px;
+  line-height: normal;
+}
+.gacha-app .roadmap__category {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.gacha-app .roadmap__banner {
+  position: absolute;
+  left: 102px;
+  top: 161px;
+  width: 459px;
+  height: 58px;
+}
+.gacha-app .roadmap__banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.gacha-app .roadmap__banner p {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #000;
+  white-space: nowrap;
+}
+
+.gacha-app .roadmap__map {
+  position: absolute;
+  left: 102px;
+  top: 245px;
+  width: 459px;
+  height: 482.1px;
+  border: 15.076px solid #fff;
+  box-shadow: 0 0 10.768px rgba(0, 0, 0, 0.1);
+}
+.gacha-app .roadmap__map-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Figma 이미지 채우기(Fill to frame)와 동일 */
+  object-position: bottom;
+}
+.gacha-app .roadmap__pin {
+  position: absolute;
+  width: 48px;
+  height: 56px;
+  margin: -15.076px 0 0 -15.076px;
+}
+
+.gacha-app .roadmap__coin {
+  position: absolute;
+  right: 60px;
+  top: 138px;
+}
+
+.gacha-app .roadmap__spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* 버튼 전체가 화면을 덮지 않게: 안쪽 요소만 클릭 */
+}
+.gacha-app .roadmap__spot > * {
+  pointer-events: auto;
+}
+.gacha-app .roadmap__spot.is-open {
+  cursor: pointer;
+}
+.gacha-app .roadmap__spot.is-locked {
+  cursor: not-allowed;
+}
+
+.gacha-app .roadmap__icon {
+  overflow: hidden;
+  transition: transform 0.15s;
+}
+.gacha-app .roadmap__icon img {
+  position: absolute;
+  max-width: none;
+}
+.gacha-app .roadmap__spot.is-locked .roadmap__icon {
+  opacity: 0.4;
+}
+.gacha-app .roadmap__spot.is-open:hover .roadmap__icon {
+  transform: translateY(-4px);
+}
+
+.gacha-app .roadmap__badge {
+  width: 28px;
+  padding: 10px 0;
+  font-size: 24px;
+  line-height: normal;
+  text-align: center;
+  color: #fff;
+  background: var(--paper-line);
+  border-radius: 12px;
+}
+.gacha-app .roadmap__spot.is-locked .roadmap__badge {
+  opacity: 0.5;
+}
+
+.gacha-app .roadmap__lock {
+  width: 52.06px;
+  height: 82px;
+  pointer-events: none;
+}
+
+.gacha-app .roadmap__label {
+  width: 140px;
+  padding: 10px;
+  font-size: 24px;
+  line-height: normal;
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
+  background: #b39356;
+  border-radius: 8px;
+  filter: drop-shadow(0 0 4.17px rgba(0, 0, 0, 0.1));
+}
+.gacha-app .roadmap__spot.is-cleared .roadmap__label::after {
+  content: ' ✓';
+}
+
+.gacha-app .roadmap__character {
+  z-index: 3;
+  pointer-events: none;
+  animation: roadmap-float 3s ease-in-out infinite;
+  transition:
+    left 0.6s ease,
+    top 0.6s ease;
+}
+@keyframes roadmap-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
+
+.gacha-app .roadmap__back {
+  left: 997px;
+  top: 710px;
+  width: 186px;
+  height: 58px;
+  transition: transform 0.15s;
+}
+.gacha-app .roadmap__back img {
+  /* 내보낸 이미지에 그림자 여백 10px이 포함됨 */
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  width: 206px;
+  height: 78px;
+}
+.gacha-app .roadmap__back:hover {
+  transform: translateY(-2px);
+}
+
+/* 게임하기 화면 자리 (비워 둠) */
+.gacha-app .game-screen {
+  position: absolute;
+  inset: 0;
+}
+.gacha-app .game-screen__title {
+  position: absolute;
+  left: 102px;
+  top: 123px;
+  font-size: 28px;
+  color: var(--text90);
+}
+.gacha-app .game-screen__empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: var(--text100);
+}
+.gacha-app .game-screen__back {
+  left: 997px;
+  top: 710px;
+  width: 186px;
+  height: 58px;
+  font-size: 24px;
+  color: #000;
+  background: var(--paper);
+  border-radius: 8px;
+}
+
+/* ────────────────────────────────────────────────
+   미션 완료 팡파레 (최종 GUI 171:5776)
+   ──────────────────────────────────────────────── */
+.gacha-app .mission-clear {
+  position: absolute;
+  inset: 0;
+  z-index: 18;
+}
+.gacha-app .mission-clear__dim {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  width: 1280px;
+  height: 772px;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    linear-gradient(rgba(74, 66, 50, 0.6), rgba(74, 66, 50, 0.6));
+  backdrop-filter: blur(2px);
+  animation: fade-in 0.3s ease-out;
+}
+
+.gacha-app .mission-clear__confetti {
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  animation: mc-burst 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+.gacha-app .mission-clear__confetti.is-left {
+  left: 0;
+  top: 67px;
+  width: 395px;
+  height: 556px;
+  --from: -60px;
+}
+.gacha-app .mission-clear__confetti.is-right {
+  left: 852px;
+  top: 78.84px;
+  width: 428px;
+  height: 612px;
+  --from: 60px;
+  animation-delay: 0.08s;
+}
+@keyframes mc-burst {
+  from {
+    opacity: 0;
+    transform: translate(var(--from), 80px) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.gacha-app .mission-clear__character {
+  left: 418px;
+  top: 186px;
+  width: 412.5px;
+  height: 438.5px;
+  pointer-events: none;
+  animation:
+    mc-pop 0.6s 0.15s cubic-bezier(0.2, 1.6, 0.4, 1) both,
+    mc-bob 2.4s 0.8s ease-in-out infinite;
+}
+@keyframes mc-pop {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes mc-bob {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+  25% {
+    rotate: -3deg;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+  75% {
+    rotate: 3deg;
+  }
+}
+
+.gacha-app .mission-clear__title {
+  left: 437px;
+  top: 652px;
+  width: 400px;
+  height: 95px;
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  line-height: normal;
+  color: #fff;
+  background: #b39356;
+  border-radius: 8px;
+  filter: drop-shadow(0 0 4.17px rgba(0, 0, 0, 0.1));
+  animation: mc-stamp 0.5s 0.45s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+@keyframes mc-stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.gacha-app .mission-clear__back {
+  z-index: 1;
+  animation: fade-in 0.4s 0.9s both;
+}
+
+.gacha-app .mission-clear__falling {
+  position: absolute;
+  inset: 60px 0 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.gacha-app .mission-clear__falling span {
+  position: absolute;
+  top: -30px;
+  border-radius: 2px;
+  opacity: 0;
+  animation-name: mc-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+@keyframes mc-fall {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(var(--r));
+  }
+  100% {
+    opacity: 0.9;
+    transform: translate(var(--dx), 820px) rotate(calc(var(--r) + 540deg));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gacha-app .mission-clear * {
+    animation: none !important;
+  }
+  .gacha-app .mission-clear__falling {
+    display: none;
+  }
+}
+.gacha-app .game-screen__test {
+  left: 560px;
+  top: 470px;
+  width: 160px;
+  padding: 10px 0;
+  font-size: 18px;
+  color: var(--text90);
+  border: 1px dashed var(--paper-line);
+  border-radius: 8px;
 }
