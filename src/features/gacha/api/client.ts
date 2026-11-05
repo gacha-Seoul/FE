@@ -11,21 +11,19 @@ import type {
   StartResponse,
   UserResponse,
 } from './types'
+import { ApiError } from './errors'
+import { isMockMode, mockApi } from './mock'
+
+export { ApiError }
+
+/** 목 데이터 모드 (?mock 으로 켜기, ?mock=off 로 끄기) */
+export const IS_MOCK = isMockMode()
 
 /**
  * 기본은 같은 출처의 /api → vite dev 서버가 백엔드로 프록시 (vite.config.ts)
  * 배포 서버를 직접 부르려면 .env 에 VITE_API_BASE_URL=https://... 지정
  */
 const BASE = (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, '') ?? ''
-
-/** 서버 오류는 {"message": "설명"} 형식. status로 분기 (400 입력·코인 부족 / 403 미해금 / 404 없음 / 409 순서·이미 완료) */
-export class ApiError extends Error {
-  status: number
-  constructor(status: number, message: string) {
-    super(message)
-    this.status = status
-  }
-}
 
 async function request<T>(method: 'GET' | 'POST', path: string, body?: unknown): Promise<T> {
   let res: Response
@@ -48,7 +46,7 @@ async function request<T>(method: 'GET' | 'POST', path: string, body?: unknown):
 const get = <T>(path: string) => request<T>('GET', path)
 const post = <T>(path: string, body?: unknown) => request<T>('POST', path, body)
 
-export const api = {
+const realApi = {
   // 01. 사용자 · 지도 · 가챠
   createUser: (body: CreateUserRequest = {}) => post<UserResponse>('/api/users', body),
   getUser: (userId: number) => get<UserResponse>(`/api/users/${userId}`),
@@ -72,6 +70,8 @@ export const api = {
   demoStart: (body: CreateUserRequest = {}) => post<DemoStartResponse>('/api/demo/start', body),
   health: () => get<HealthResponse>('/api/health'),
 }
+
+export const api: typeof realApi = IS_MOCK ? mockApi : realApi
 
 /** crypto.randomUUID는 https/localhost에서만 있어서 IP로 접속할 때를 위한 대체 */
 function uuid(): string {

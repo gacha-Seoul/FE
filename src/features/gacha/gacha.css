@@ -1300,3 +1300,16 @@
   display: flex;
   gap: 8px;
 }
+
+.gacha-app .mock-badge {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  z-index: 25;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: #fff;
+  background: rgba(62, 88, 104, 0.85);
+  border-radius: 6px;
+  pointer-events: none;
+}

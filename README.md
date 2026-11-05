@@ -74,6 +74,8 @@ npm run assets   # Figma 이미지/SVG → public/assets (링크 만료 2026-11-
 npm run dev      # /api → VITE_API_PROXY(기본 http://localhost:8080), /api/review → 127.0.0.1:8001
 ```
 
+- **서버 없이 확인**: `http://localhost:5173/gacha?mock` → 목 데이터 모드(코인 10개, 5개 구 모두 뽑기 가능, 퀘스트 대화는 규칙 기반 가짜 응답). 브라우저에 기억되며 `?mock=off`로 끔. `src/features/gacha/api/mock.ts`
+- `?new` : 저장된 사용자 무시하고 새 사용자로 시작
 - `http://localhost:5173/gacha?demo` : `POST /api/demo/start`로 새 사용자 + 첫 가챠(서대문구) 후 결과 팝업부터 시작 (발표용)
 - 사용자 ID는 localStorage(`gacha-seoul:userId`)에 저장. 404면 새로 생성.
 - 화면은 Figma 프레임(1280×832)을 화면 크기에 맞춰 확대·축소. 스타일은 `.gacha-app` 아래로만 적용.

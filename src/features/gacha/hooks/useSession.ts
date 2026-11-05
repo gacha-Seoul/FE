@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api, ApiError } from '../api/client'
+import { api, ApiError, IS_MOCK } from '../api/client'
 import type { MapResponse, RegionDetail, UserResponse } from '../api/types'
 
-const USER_KEY = 'gacha-seoul:userId'
+// 목 모드와 실제 서버의 사용자 ID가 섞이지 않게 키를 나눔
+const USER_KEY = IS_MOCK ? 'gacha-seoul:userId:mock' : 'gacha-seoul:userId'
 
 const loadUserId = (): number | null => {
   try {
