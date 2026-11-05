@@ -101,6 +101,18 @@ export function useSession() {
     setMap((m) => (m ? { ...m, coins } : m))
   }, [])
 
+  const reconnect = useCallback(async () => {
+    setError(null)
+    try {
+      const result = await boot()
+      setUser(result.user)
+      if (result.demoRegion) setDemoRegion(result.demoRegion)
+      await refreshMap(result.user.id)
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : '서버에 다시 연결하지 못했어요.')
+    }
+  }, [refreshMap])
+
   return {
     user,
     map,
@@ -109,5 +121,6 @@ export function useSession() {
     clearDemoRegion: () => setDemoRegion(null),
     refreshMap: () => (user ? refreshMap(user.id) : Promise.resolve(null)),
     setCoins,
+    reconnect,
   }
 }

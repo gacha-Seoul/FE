@@ -8,15 +8,20 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "assets": "bash scripts/download-assets.sh"
+    "assets": "bash scripts/download-assets.sh",
+    "assets:market": "python3 scripts/prepare-market.py",
+    "assets:npcs": "node scripts/prepare-npcs.mjs",
+    "check:market": "node scripts/check-market.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
     "@react-three/fiber": "^9.8.2",
+    "@sparkjsdev/spark": "^2.4.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.5",
     "three": "^0.187.0",
+    "three-mesh-bvh": "^0.9.18",
     "zustand": "^5.0.16"
   },
   "devDependencies": {

@@ -142,7 +142,7 @@
   animation: capsule-tumble 0.35s ease-in-out infinite alternate;
 }
 .gacha-app .capsules.is-spinning,
-.gacha-app .machine.is-spinning {
+.gacha-app .machine-artwork.is-spinning {
   animation: machine-shake 0.18s linear infinite;
 }
 
@@ -375,8 +375,6 @@
 /* 핀 좌표는 지도 바깥(테두리 포함) 기준이라 테두리만큼 보정 */
 .gacha-app .map__pin {
   position: absolute;
-  width: 20.571px;
-  height: 24px;
   margin: -11.679px 0 0 -11.679px;
   transform-origin: 50% 100%;
   transition:
@@ -437,10 +435,8 @@
 
 .gacha-app .popup__bubble {
   position: absolute;
-  left: 10px;
-  top: 10px;
-  width: 980px;
-  height: 526.012px;
+  left: 0;
+  top: 20px;
 }
 
 .gacha-app .popup__map {
@@ -462,8 +458,6 @@
 }
 .gacha-app .popup__pin {
   position: absolute;
-  width: 37px;
-  height: 43.167px;
   margin: -11.679px 0 0 -11.679px;
 }
 
@@ -497,7 +491,7 @@
   line-height: 1.6;
 }
 
-/* 장소 카드 4개 */
+/* 원본 카드 크기를 유지하고 서버 장소 수가 많으면 가로로 탐색 */
 .gacha-app .places {
   position: absolute;
   left: 343px;
@@ -505,10 +499,15 @@
   display: flex;
   align-items: center;
   gap: 9px;
+  width: 610px;
+  padding: 5px 0 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .gacha-app .place {
   position: relative;
+  flex: 0 0 129px;
   width: 129px;
   height: 319px;
   background: var(--paper);
@@ -533,7 +532,8 @@
   font-size: 24px;
   line-height: normal;
   color: #000;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  padding: 0 6px;
 }
 
 .gacha-app .place__divider {
@@ -547,8 +547,6 @@
   position: absolute;
   top: -1px;
   left: 0;
-  width: 100%;
-  height: 1px;
 }
 
 .gacha-app .place__spots {
@@ -562,6 +560,9 @@
   line-height: 1.6;
   color: var(--paper-text);
   word-break: keep-all;
+  max-height: 185px;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
 }
 .gacha-app .place__spots li::marker {
   font-size: 14px;
@@ -569,6 +570,7 @@
 
 .gacha-app .places__arrow {
   position: relative;
+  flex: 0 0 12.033px;
   width: 12.033px;
   height: 19px;
   display: flex;
@@ -588,8 +590,6 @@
   bottom: 25%;
   left: 10.91%;
   right: 10.91%;
-  width: 78.18%;
-  height: 72.45%;
 }
 
 @keyframes fade-in {
@@ -748,9 +748,28 @@
   animation: pop-in 0.3s ease-out;
 }
 .gacha-app .clear__character {
-  width: 220px;
-  filter: drop-shadow(0 0 30px #fff);
   animation: float 3s ease-in-out infinite;
+}
+.gacha-app .clear__confetti {
+  position: absolute;
+  top: 67px;
+  width: 434px;
+  height: 556px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.gacha-app .clear__confetti img {
+  position: absolute;
+  width: 192.41%;
+  height: 100.14%;
+}
+.gacha-app .clear__confetti--left { left: -39px; }
+.gacha-app .clear__confetti--right { right: -37px; transform: rotate(-9.08deg); }
+.gacha-app .clear__confetti--right img { right: 0; }
+.gacha-app .machine-artwork {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 .gacha-app .clear__title {
   padding: 24px 60px;
@@ -1685,3 +1704,5 @@
   border: 1px dashed var(--paper-line);
   border-radius: 8px;
 }
+
+.gacha-app .market-game-entry{position:absolute;left:45px;bottom:24px;z-index:4;border:1px solid #687253;background:#f8f4e8;color:#344d35;padding:12px 18px;border-radius:4px;font-size:15px;text-decoration:none}

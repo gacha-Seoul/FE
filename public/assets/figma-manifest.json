@@ -1,0 +1,486 @@
+{
+  "fileKey": "DkGUSQuu3x644VG9qVmu4w",
+  "pageNodeId": "1:6",
+  "assets": [
+    {
+      "file": "machine-shadow.svg",
+      "nodeId": "68:137",
+      "sha256": "184d0ec4e73bde1bcac9511eb8877e1443360d37355f7a25921af118c5528108",
+      "bytes": 572,
+      "width": 552.0,
+      "height": 65.0
+    },
+    {
+      "file": "cloud-11.svg",
+      "nodeId": "68:137",
+      "sha256": "54ca14f90ee3b25e5abd4a9f934109b4e87ad253f6a813dd0b829a069e3e7642",
+      "bytes": 647,
+      "width": 107.059,
+      "height": 42.3182
+    },
+    {
+      "file": "cloud-10.svg",
+      "nodeId": "68:137",
+      "sha256": "29e785149caf9ce59f6db99d0f1633c216e99f1f4ab59d0fd49fd86c1a045df9",
+      "bytes": 627,
+      "width": 123.963,
+      "height": 49.0
+    },
+    {
+      "file": "cloud-13.svg",
+      "nodeId": "68:137",
+      "sha256": "0c511042d196c16a232d2a591a11755145e0c739da5f921f8b3c50094de40027",
+      "bytes": 472,
+      "width": 104.66,
+      "height": 39.32
+    },
+    {
+      "file": "seoul-map.png",
+      "nodeId": "68:137",
+      "sha256": "8afb23cfa28d62216f3d06232ce2cd8a1ddaa33f1dbc888ac93769c1fddeb474",
+      "bytes": 1685335,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "map-pin.svg",
+      "nodeId": "68:137",
+      "sha256": "2f388cf8d4f055dbd6f906a8e0cc600c2036e41a878f9d2da1bf962350370965",
+      "bytes": 1423,
+      "width": 20.5714,
+      "height": 24.0
+    },
+    {
+      "file": "character.svg",
+      "nodeId": "68:137",
+      "sha256": "6ce37b1d9e53a84fe92edf59285de94034d5d7bdfc8ec3725b84a4bc8bb9e54f",
+      "bytes": 6816,
+      "width": 232.691,
+      "height": 220.779
+    },
+    {
+      "file": "card-seodaemun.png",
+      "nodeId": "68:137",
+      "sha256": "ca0a76bc81f917eb69b15c872174046adffd41c47abaa5e0d28504b542e132fb",
+      "bytes": 924576,
+      "width": 960,
+      "height": 504
+    },
+    {
+      "file": "card-dongdaemun.png",
+      "nodeId": "68:137",
+      "sha256": "376a0d7b2ae1f465d1c2ca9cb876259ad5be9e3b5e432179a0770ce03fbbb5dc",
+      "bytes": 375096,
+      "width": 540,
+      "height": 347
+    },
+    {
+      "file": "card-mapo.png",
+      "nodeId": "68:137",
+      "sha256": "e4ae029fe64ef6b0f30792a3e9cd66d186546e4b9c4bc4c546541d845424c2a1",
+      "bytes": 409202,
+      "width": 580,
+      "height": 326
+    },
+    {
+      "file": "card-jongno.png",
+      "nodeId": "68:137",
+      "sha256": "f9674682f95f1c5c4afa3ec6a4c703f9e00d2b2780162b845c6e2751ae904a12",
+      "bytes": 729984,
+      "width": 771,
+      "height": 512
+    },
+    {
+      "file": "card-junggu.png",
+      "nodeId": "68:137",
+      "sha256": "63c642fe97f75f71e89ffddd53ba00890871a376901573d4993d1b1ed2de46b6",
+      "bytes": 251631,
+      "width": 540,
+      "height": 359
+    },
+    {
+      "file": "capsule-27.svg",
+      "nodeId": "68:137",
+      "sha256": "0d6174a345dd600d12f5cbcaa2f9bda3e8c456cc9d131deddf7d66f4d18a37bb",
+      "bytes": 1994,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-30.svg",
+      "nodeId": "68:137",
+      "sha256": "55c27478f314d9fc5d6eb0eeb1eb33495bd5ac7da410ab869a08f6263d8da217",
+      "bytes": 1985,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-28.svg",
+      "nodeId": "68:137",
+      "sha256": "c141bb284f1c3e238006d2a4b2cbd96e4c97a145cf6dd010ea6cede1b6ef1bf4",
+      "bytes": 1985,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-35.svg",
+      "nodeId": "68:137",
+      "sha256": "4b5936c1def36c969ee9df899aec70f4e1de6de916a4be795986cca241cc0a6f",
+      "bytes": 1994,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-34.svg",
+      "nodeId": "68:137",
+      "sha256": "702ad6bbd469c7d532110f9011da907a2bf1e786120db0e6485481217520f1d6",
+      "bytes": 1994,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-36.svg",
+      "nodeId": "68:137",
+      "sha256": "1e1002644c595ceae5e337710b6619dbce9d7de20a7231e4a3ff6eb84b754c3e",
+      "bytes": 1994,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-38.svg",
+      "nodeId": "68:137",
+      "sha256": "8adb246c1c3357e27d6b442f62509f31168a0a01e9ff556f95b1a934fe9056d1",
+      "bytes": 2059,
+      "width": 72.0001,
+      "height": 78.2491
+    },
+    {
+      "file": "capsule-32.svg",
+      "nodeId": "68:137",
+      "sha256": "dc308ce780063de6ce0ebd9eda5b0334e18d54261aafaee1179cd50e55fd4ddb",
+      "bytes": 1985,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "capsule-31.svg",
+      "nodeId": "68:137",
+      "sha256": "bcf1a42de104b21403ca5d06e1afd16364964b593e04c6e998c527053ddfa8d0",
+      "bytes": 1985,
+      "width": 72.0,
+      "height": 72.4492
+    },
+    {
+      "file": "popup-bubble.svg",
+      "nodeId": "141:1286",
+      "sha256": "676886da6e5fdd7374806b1cee884bd04ad08648a166e30e0ed35c929f4b7d89",
+      "bytes": 452,
+      "width": 980.0,
+      "height": 526.012
+    },
+    {
+      "file": "popup-map-seodaemun.png",
+      "nodeId": "141:1286",
+      "sha256": "1ffb35f492bb8784d804bf76f5be66164147a8edbc91aa6d086979d79e130920",
+      "bytes": 1462467,
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "file": "popup-pin.svg",
+      "nodeId": "141:1286",
+      "sha256": "bbbb9e18f1e41a5c925dce521286a20044a8321c7f69772c4c3ef60964b0df2b",
+      "bytes": 1403,
+      "width": 37.0,
+      "height": 43.1667
+    },
+    {
+      "file": "popup-divider.svg",
+      "nodeId": "141:1286",
+      "sha256": "b91f3ff0a7134524fcddca3d5bb59078a2677fb741fa9b78caf037136332368d",
+      "bytes": 243,
+      "width": 99.0,
+      "height": 1.0
+    },
+    {
+      "file": "popup-arrow.svg",
+      "nodeId": "141:1286",
+      "sha256": "bb20d8820387aca57feabbb636ce14ae8785932c1347b92e72810fd144402cf0",
+      "bytes": 452,
+      "width": 14.8549,
+      "height": 8.71824
+    },
+    {
+      "file": "popup-capsule.svg",
+      "nodeId": "141:1286",
+      "sha256": "3b33212283015b0c59b3d92070cc896bd7b651ed11f43107b2cc7d536f512c54",
+      "bytes": 2823,
+      "width": 150.0,
+      "height": 150.933
+    },
+    {
+      "file": "machine.png",
+      "nodeId": "103:926",
+      "sha256": "47ff2467abf97e02e69f923b23fac115fcf689655a39e2ac3d7ef773d90202af",
+      "bytes": 91730,
+      "width": 336,
+      "height": 605
+    },
+    {
+      "file": "deco-left.png",
+      "nodeId": "141:1285",
+      "sha256": "c60550a994594dd0855fd1b9e98c92da3fef17467c4db15605f5a714a5b91f0b",
+      "bytes": 6804,
+      "width": 144,
+      "height": 710
+    },
+    {
+      "file": "deco-right.png",
+      "nodeId": "141:1284",
+      "sha256": "d2d582b6e3134d4a1739d94b433f1364f9f9ca82091ab81f4936a0f130946e68",
+      "bytes": 6048,
+      "width": 141,
+      "height": 579
+    },
+    {
+      "file": "gacha-button-bg.png",
+      "nodeId": "126:192",
+      "sha256": "afb0233b8d220361f5573baec945586ea781c5a61aa4de46ceac8179e76837d8",
+      "bytes": 1140,
+      "width": 153,
+      "height": 58
+    },
+    {
+      "file": "coin.png",
+      "nodeId": "103:995",
+      "sha256": "80f308954f5c9a44314ccc64e2df2dd643b6806d9994ed3567becb1407ff09f0",
+      "bytes": 859,
+      "width": 26,
+      "height": 26
+    },
+    {
+      "file": "complete-character.svg",
+      "nodeId": "164:5304",
+      "sha256": "7c92a9ba7b2d2770f59a3031796f879d0b65a2710e4a5492274e94552ddfb0b5",
+      "bytes": 5044,
+      "width": 412.059,
+      "height": 438.012
+    },
+    {
+      "file": "complete-confetti.png",
+      "nodeId": "171:5338",
+      "sha256": "1eb7c0573dd92db016135d807aedeeb21740ad207cd7c89c253bee869aedf524",
+      "bytes": 684700,
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "machine/Rectangle44.svg",
+      "nodeId": "103:926",
+      "sha256": "9570f8717f4fd89c7035ce874d290bdc0987aba711f68d8b542a36c04540a54b",
+      "bytes": 327,
+      "width": 35.3165,
+      "height": 317.848
+    },
+    {
+      "file": "machine/Rectangle49.png",
+      "nodeId": "103:926",
+      "sha256": "eaf943a37b00e9579c73a87d722974d8ee35f5670cd8838b82adb31da234d529",
+      "bytes": 1899,
+      "width": 8,
+      "height": 318
+    },
+    {
+      "file": "machine/Rectangle53.svg",
+      "nodeId": "103:926",
+      "sha256": "94d403c67f05d85420e9efb295672b36947a297cec8d1355c1e3a5d3b1550983",
+      "bytes": 289,
+      "width": 32.5283,
+      "height": 312.272
+    },
+    {
+      "file": "machine/Rectangle57.svg",
+      "nodeId": "103:926",
+      "sha256": "3890eb776ff8a8c0e73f100983ba8acbc864db699be1d8742145a9c54b3a9817",
+      "bytes": 316,
+      "width": 47.733,
+      "height": 241.572
+    },
+    {
+      "file": "machine/Rectangle58.svg",
+      "nodeId": "103:926",
+      "sha256": "ce710fd7d87f628ee2279405a2ee988c4a56f9a5670468e96bb948faae7c65b2",
+      "bytes": 317,
+      "width": 30.4187,
+      "height": 124.333
+    },
+    {
+      "file": "machine/Rectangle56.svg",
+      "nodeId": "103:926",
+      "sha256": "22290c373483fe398b8bd91980144362ec233ba8e895e3d78286b86474c039f0",
+      "bytes": 288,
+      "width": 17.1884,
+      "height": 126.23
+    },
+    {
+      "file": "machine/Rectangle42.png",
+      "nodeId": "103:926",
+      "sha256": "334e3d98fa678b588cfd2952f96b3bc5d1d2b8bd71b2e410b874ca8da928011a",
+      "bytes": 3193,
+      "width": 14,
+      "height": 318
+    },
+    {
+      "file": "machine/Rectangle43.png",
+      "nodeId": "103:926",
+      "sha256": "a0bf8a176a8a47e2d3866ae9882b083605478ec725b08d2ec1b97755ef8d8171",
+      "bytes": 3201,
+      "width": 14,
+      "height": 320
+    },
+    {
+      "file": "machine/Rectangle50.svg",
+      "nodeId": "103:926",
+      "sha256": "78b82820ad4aad01dc28b7c11c9b1176c3e196cde7095412d5873b2c008c7f5f",
+      "bytes": 555,
+      "width": 297.812,
+      "height": 18.5876
+    },
+    {
+      "file": "machine/Rectangle52.svg",
+      "nodeId": "103:926",
+      "sha256": "023f4968c3d7031a6855e51cf7d4de0db9b562d61c12c38f6f2cf819a89ee8ad",
+      "bytes": 575,
+      "width": 333.648,
+      "height": 18.5876
+    },
+    {
+      "file": "machine/Rectangle51.svg",
+      "nodeId": "103:926",
+      "sha256": "f55f5cb9aa219b58bcf55a20ff41bb3d40b26663e7b4ddf419665c3345515533",
+      "bytes": 699,
+      "width": 37.1753,
+      "height": 22.3052
+    },
+    {
+      "file": "machine/Rectangle65.svg",
+      "nodeId": "103:926",
+      "sha256": "b9a3a4697cf37d053f0c42aa1146f34e5ed86ffbd034477989f443a90f5ee703",
+      "bytes": 294,
+      "width": 26.9521,
+      "height": 33.9224
+    },
+    {
+      "file": "machine/Ellipse29.svg",
+      "nodeId": "103:926",
+      "sha256": "7093a8a100a96dea40f3ef84871352328d4a86e5b453b05ffa2ea769bb9f75c1",
+      "bytes": 882,
+      "width": 46.4691,
+      "height": 46.4691
+    },
+    {
+      "file": "machine/Ellipse25.svg",
+      "nodeId": "103:926",
+      "sha256": "47495f933c17f60a530528d30c57bff280c5a6585a78b1e952f8a5e352303d3d",
+      "bytes": 272,
+      "width": 4.64691,
+      "height": 4.64691
+    },
+    {
+      "file": "machine/Ellipse30.svg",
+      "nodeId": "103:926",
+      "sha256": "9f0b4ad675058e96f5d21f0853d54157645f7f833d591f16b4e5d009bf280f3a",
+      "bytes": 887,
+      "width": 68.7742,
+      "height": 68.7742
+    },
+    {
+      "file": "machine/Ellipse31.svg",
+      "nodeId": "103:926",
+      "sha256": "d2f557cf6a5fa6659d9278f9e643be700d279ab1133aae15332a4811f16e0d74",
+      "bytes": 491,
+      "width": 53.9041,
+      "height": 53.9041
+    },
+    {
+      "file": "machine/Ellipse32.svg",
+      "nodeId": "103:926",
+      "sha256": "9551f449cd22fd74d3a8060ec7721fb9c77d98ba54cee12e28cae79bfc8388d6",
+      "bytes": 670,
+      "width": 42.7515,
+      "height": 42.7515
+    },
+    {
+      "file": "machine/Rectangle68.svg",
+      "nodeId": "103:926",
+      "sha256": "982db7500327e435425e6cd27c4d6d0cee8ad38062bccdca5f5fc6fc31fb2400",
+      "bytes": 1471,
+      "width": 43.6809,
+      "height": 14.8701
+    },
+    {
+      "file": "machine/Ellipse33.svg",
+      "nodeId": "103:926",
+      "sha256": "76c56efdd2242e9af89a120820e6079cb3e71d1fbc4e270482547041d0dec3f2",
+      "bytes": 889,
+      "width": 39.9634,
+      "height": 39.9634
+    },
+    {
+      "file": "machine/Ellipse34.svg",
+      "nodeId": "103:926",
+      "sha256": "5222ecadbef28efdbe13a50b602e586ac2b875f7adcae7c389d8c796edbc6f11",
+      "bytes": 1082,
+      "width": 31.3227,
+      "height": 31.3227
+    },
+    {
+      "file": "machine/Rectangle45.png",
+      "nodeId": "103:926",
+      "sha256": "2327fe355bbb5fff6c8e6eb45949947b8ce287ab5c4959e5603a5178c0063e98",
+      "bytes": 2763,
+      "width": 14,
+      "height": 226
+    },
+    {
+      "file": "machine/Rectangle46.png",
+      "nodeId": "103:926",
+      "sha256": "a3f11116924470fe8adde0aefd7d6b3ee69bd94c16020f193a80eb09b32b6b10",
+      "bytes": 2735,
+      "width": 14,
+      "height": 225
+    },
+    {
+      "file": "machine/Rectangle54.svg",
+      "nodeId": "103:926",
+      "sha256": "e340c4ac40bb5eaaeeb1cb9ad880353c8807cdd7635df4f3767608073f60e862",
+      "bytes": 297,
+      "width": 5.57629,
+      "height": 227.698
+    },
+    {
+      "file": "machine/Rectangle47.svg",
+      "nodeId": "103:926",
+      "sha256": "e742bc0bb61ad52a9e0f14773d03c48029920d079c760bd737ef2ebb2114b896",
+      "bytes": 541,
+      "width": 8.36443,
+      "height": 227.698
+    },
+    {
+      "file": "machine/Rectangle48.svg",
+      "nodeId": "103:926",
+      "sha256": "b0f89b717886c26ae1c53974be128921a69d2143a2b263d599ab376001f385cd",
+      "bytes": 1048,
+      "width": 34.3871,
+      "height": 32.6772
+    },
+    {
+      "file": "machine/Vector3.svg",
+      "nodeId": "103:926",
+      "sha256": "c48dc6c86368342e33fac7d841e17bf041a5f7a52de047382031b1c23d62db57",
+      "bytes": 334,
+      "width": 35.5079,
+      "height": 12.3842
+    }
+  ]
+}

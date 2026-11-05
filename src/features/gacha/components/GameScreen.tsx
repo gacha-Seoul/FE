@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { StageSummary } from '../api/types'
 import MissionClear from './MissionClear'
 
@@ -24,7 +25,11 @@ export default function GameScreen({ regionName, stage, placeLabel, onBack, onGa
       <p className="game-screen__title">
         {regionName} · {placeLabel}
       </p>
-      <p className="game-screen__empty">게임하기 화면 (준비 중)</p>
+      {stage.place.includes('전통시장') ? (
+        <div className="game-screen__empty">
+          <Link className="paper-button is-primary" to="/play/market">3D 시장에서 플레이하기 ↗</Link>
+        </div>
+      ) : <p className="game-screen__empty">게임하기 화면 (준비 중)</p>}
       {/* 임시: 게임 붙기 전까지 미션 완료 연출 확인용 */}
       <button className="abs game-screen__test" onClick={() => setCleared(true)}>
         미션 완료 테스트

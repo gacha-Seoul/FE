@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Stage from './components/Stage'
 import Header from './components/Header'
 import Decorations from './components/Decorations'
@@ -150,6 +151,7 @@ export default function GachaApp() {
             />
           )}
           <Character raised={!!popupRegion} />
+          {!popupRegion && <Link className="market-game-entry" to="/play/market">전통시장 3D로 둘러보기 ↗</Link>}
         </>
       )}
 

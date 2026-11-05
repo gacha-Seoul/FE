@@ -1,6 +1,8 @@
+import MachineArtwork from './MachineArtwork'
+
 /**
  * 가챠 기계 + 캡슐 (node 103:926 + 캡슐 Group 27~39)
- * 캡슐은 기계 유리 뒤에 깔리고, 기계(machine.png)가 위에 덮임
+ * 캡슐 위에 반투명 유리와 금속 레이어를 피그마 순서대로 배치
  * 좌표는 메인 프레임(1280x832) 기준 Figma 값 그대로
  */
 type Capsule = {
@@ -10,8 +12,6 @@ type Capsule = {
   boxW: number
   boxH: number
   rotate: number
-  w?: number
-  h?: number
 }
 
 const CAPSULES: Capsule[] = [
@@ -21,7 +21,7 @@ const CAPSULES: Capsule[] = [
   { src: 'capsule-35', left: 264, top: 259, boxW: 96.981, boxH: 96.78, rotate: -116.53 },
   { src: 'capsule-34', left: 285, top: 364, boxW: 96.037, boxH: 96.252, rotate: 154.73 },
   { src: 'capsule-36', left: 233, top: 305, boxW: 100.072, boxH: 99.943, rotate: 56.73 },
-  { src: 'capsule-38', left: 379, top: 272, boxW: 104.921, boxH: 103.124, rotate: 56.73, h: 78.249 },
+  { src: 'capsule-38', left: 379, top: 272, boxW: 104.921, boxH: 103.124, rotate: 56.73 },
   { src: 'capsule-34', left: 314, top: 293, boxW: 96.037, boxH: 96.252, rotate: 154.73 },
   { src: 'capsule-32', left: 341.25, top: 422.24, boxW: 99.272, boxH: 99.42, rotate: -148.43 },
   { src: 'capsule-32', left: 402, top: 339, boxW: 99.272, boxH: 99.42, rotate: -148.43 },
@@ -35,25 +35,15 @@ export default function GachaMachine({ spinning }: { spinning: boolean }) {
         className="abs"
         src="/assets/machine-shadow.svg"
         alt=""
-        style={{ left: 95, top: 739, width: 552, height: 65 }}
+        style={{ left: 95, top: 739 }}
       />
 
-      <img
-        className={`abs machine ${spinning ? 'is-spinning' : ''}`}
-        src="/assets/machine.png"
-        alt="가챠 기계"
-        style={{ left: 201, top: 170, width: 334.988, height: 604.098 }}
-      />
-      {/*
-        machine.png는 Figma 내보내기에서 유리가 불투명하게 구워져서 캡슐을 기계 "위"에 올리고
-        유리 영역(68:693)으로 잘라낸 뒤, 반투명 유리색(rgba(223,238,243,0.7))을 다시 덮어 원래 느낌을 재현
-      */}
       <div className={`capsules ${spinning ? 'is-spinning' : ''}`}>
         <img
           className="abs"
           src="/assets/capsule-27.svg"
           alt=""
-          style={{ left: 238, top: 435, width: 72, height: 72.449 }}
+          style={{ left: 238, top: 435 }}
         />
         {CAPSULES.map((c, i) => (
           <div
@@ -64,11 +54,14 @@ export default function GachaMachine({ spinning }: { spinning: boolean }) {
             <img
               src={`/assets/${c.src}.svg`}
               alt=""
-              style={{ width: c.w ?? 72, height: c.h ?? 72.449, transform: `rotate(${c.rotate}deg)` }}
+              style={{ transform: `rotate(${c.rotate}deg)` }}
             />
           </div>
         ))}
-        <span className="abs machine-glass" />
+      </div>
+
+      <div className={`machine-artwork ${spinning ? 'is-spinning' : ''}`} role="img" aria-label="가챠 기계">
+        <MachineArtwork />
       </div>
     </>
   )

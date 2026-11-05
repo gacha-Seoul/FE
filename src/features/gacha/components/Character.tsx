@@ -3,9 +3,9 @@ export default function Character({ raised = false }: { raised?: boolean }) {
   return (
     <img
       className={`abs character ${raised ? 'is-raised' : ''}`}
-      src="/assets/character.svg"
+      src={raised ? '/assets/popup-capsule.svg' : '/assets/character.svg'}
       alt="가이드 캐릭터"
-      style={{ left: 974.46, top: 573.22, width: 232.68, height: 223.78 }}
+      style={raised ? { left: 1021, top: 650.29 } : { left: 974.46, top: 587.22 }}
     />
   )
 }
