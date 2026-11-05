@@ -1,0 +1,1289 @@
+/* ────────────────────────────────────────────────
+   디자인 토큰 (Figma 스타일)
+   ──────────────────────────────────────────────── */
+.gacha-app {
+  --bg: #eeebe4;
+  --line: #c5bfb6;
+  --text100: #787878;
+  --text90: #3a3a3a;
+  --text80: #c8c8c8;
+  --paper: #e2cfa3;
+  --paper-line: #8d7d5e;
+  --paper-text: #5d503a;
+  --shadow: 0 0 8.341px rgba(0, 0, 0, 0.1);
+
+  /* 한컴 훈민정음 H — public/fonts/fonts.css 에서 로드 */
+  --font: var(--font-hancom);
+}
+
+.gacha-app img {
+  display: block;
+  max-width: none;
+}
+
+/* 가챠 화면 전용 스타일. 전역 스타일과 겹치지 않게 모두 .gacha-app 아래로 한정 */
+.gacha-app * {
+  margin: 0;
+  padding: 0;
+}
+.gacha-app p,
+.gacha-app h1,
+.gacha-app h2 {
+  font-weight: 400;
+  line-height: normal;
+}
+.gacha-app {
+  font-family: var(--font);
+  color: var(--text90);
+  background: var(--bg);
+}
+.gacha-app button {
+  color: inherit;
+  background: none;
+  border: 0;
+}
+.gacha-app button:disabled {
+  cursor: default;
+}
+
+/* ────────────────────────────────────────────────
+   Stage (1280 x 832 고정 → 화면에 맞게 scale)
+   ──────────────────────────────────────────────── */
+.gacha-app.stage-viewport {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.gacha-app .stage {
+  position: relative;
+  width: 1280px;
+  height: 832px;
+  flex: none;
+  background: var(--bg);
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.gacha-app .abs {
+  position: absolute;
+}
+
+.gacha-app .decorations,
+.gacha-app .capsules {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ────────────────────────────────────────────────
+   Header (68:175)
+   ──────────────────────────────────────────────── */
+.gacha-app .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 1280px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 40px 20px 80px;
+  background: var(--bg);
+  border-bottom: 2px solid var(--line);
+}
+
+.gacha-app .header__logo {
+  font-size: 28px;
+  color: var(--text100);
+  white-space: nowrap;
+}
+
+.gacha-app .header__lang {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 24px;
+  color: var(--text100);
+}
+.gacha-app .header__lang button:hover {
+  color: var(--text90);
+}
+.gacha-app .header__sep {
+  color: var(--text80);
+}
+
+/* ────────────────────────────────────────────────
+   가챠 기계
+   ──────────────────────────────────────────────── */
+.gacha-app .capsule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gacha-app .capsules.is-spinning .capsule {
+  animation: capsule-tumble 0.35s ease-in-out infinite alternate;
+}
+.gacha-app .capsules.is-spinning,
+.gacha-app .machine.is-spinning {
+  animation: machine-shake 0.18s linear infinite;
+}
+
+@keyframes machine-shake {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2px, 1px) rotate(-0.4deg);
+  }
+  75% {
+    transform: translate(2px, -1px) rotate(0.4deg);
+  }
+}
+@keyframes capsule-tumble {
+  from {
+    transform: translateY(0) rotate(0);
+  }
+  to {
+    transform: translateY(-14px) rotate(20deg);
+  }
+}
+
+/* ────────────────────────────────────────────────
+   뽑기 횟수 + 버튼 (103:1121)
+   ──────────────────────────────────────────────── */
+.gacha-app .draw-panel {
+  position: absolute;
+  left: 82px;
+  top: 113px;
+  width: 153px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 2;
+}
+
+.gacha-app .draw-panel__count {
+  font-size: 24px;
+  color: var(--text90);
+  white-space: nowrap;
+}
+
+.gacha-app .draw-button {
+  position: relative;
+  width: 153px;
+  height: 58px;
+  transition:
+    transform 0.15s,
+    filter 0.15s;
+}
+.gacha-app .draw-button img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.gacha-app .draw-button span {
+  position: absolute;
+  left: 29px;
+  top: 16px;
+  font-size: 24px;
+  line-height: normal;
+  color: #000;
+  white-space: nowrap;
+}
+.gacha-app .draw-button:not(:disabled):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04) drop-shadow(0 4px 6px rgba(141, 125, 94, 0.35));
+}
+.gacha-app .draw-button:not(:disabled):active {
+  transform: translateY(1px);
+}
+.gacha-app .draw-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+  opacity: 0.7;
+}
+
+/* ────────────────────────────────────────────────
+   우측 보드 (135:1027)
+   ──────────────────────────────────────────────── */
+.gacha-app .board {
+  position: absolute;
+  left: 602px;
+  top: 100px;
+  width: 638px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 2;
+}
+
+.gacha-app .board__top {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.gacha-app .board__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gacha-app .board__copy {
+  font-size: 24px;
+  line-height: normal;
+  color: var(--text100);
+  white-space: nowrap;
+}
+
+.gacha-app .coin {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 24px;
+  color: var(--text90);
+  white-space: nowrap;
+}
+
+/* 후보 카드 */
+.gacha-app .cards {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+}
+
+.gacha-app .card {
+  position: relative;
+  width: 114px;
+  height: 123px;
+  transition: transform 0.12s;
+}
+
+.gacha-app .card__btn {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #fff;
+  text-align: center;
+}
+
+.gacha-app .card__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gacha-app .card__dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: background 0.12s;
+}
+.gacha-app .card:nth-child(1) .card__dim {
+  background: rgba(0, 0, 0, 0.4);
+}
+.gacha-app .card:nth-child(2) .card__dim {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.gacha-app .card__category,
+.gacha-app .card__name {
+  position: relative;
+  width: 100%;
+}
+.gacha-app .card__category {
+  font-size: 14px;
+  line-height: normal;
+}
+.gacha-app .card__name {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.gacha-app .card.is-active {
+  transform: translateY(-6px) scale(1.06);
+  z-index: 1;
+}
+.gacha-app .card.is-active .card__btn {
+  box-shadow:
+    0 0 0 3px var(--paper),
+    0 6px 14px rgba(0, 0, 0, 0.25);
+}
+.gacha-app .card.is-active .card__dim {
+  background: rgba(0, 0, 0, 0.1);
+}
+.gacha-app .card__btn:not(:disabled):hover {
+  filter: brightness(1.1);
+}
+
+/* 서울 지도 */
+.gacha-app .map {
+  position: relative;
+  width: 480.807px;
+  height: 441px;
+  border: 11.679px solid #fff;
+  box-shadow: var(--shadow);
+}
+
+.gacha-app .map__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.gacha-app .map__dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* 핀 좌표는 지도 바깥(테두리 포함) 기준이라 테두리만큼 보정 */
+.gacha-app .map__pin {
+  position: absolute;
+  width: 20.571px;
+  height: 24px;
+  margin: -11.679px 0 0 -11.679px;
+  transform-origin: 50% 100%;
+  transition:
+    transform 0.12s,
+    filter 0.12s;
+}
+.gacha-app .map__pin.is-active {
+  transform: translateY(-4px) scale(1.5);
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.35));
+}
+
+/* ────────────────────────────────────────────────
+   캐릭터 (126:677)
+   ──────────────────────────────────────────────── */
+.gacha-app .character {
+  z-index: 3;
+  pointer-events: none;
+  animation: float 3s ease-in-out infinite;
+}
+.gacha-app .character.is-raised {
+  z-index: 15;
+  filter: drop-shadow(0 0 30px #fff); /* white glow */
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ────────────────────────────────────────────────
+   결과 팝업 (141:1286 / 146:1688)
+   ──────────────────────────────────────────────── */
+.gacha-app .overlay {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  z-index: 10;
+  width: 1280px;
+  height: 772px;
+  background: rgba(40, 36, 30, 0.3);
+  animation: fade-in 0.2s ease-out;
+}
+
+.gacha-app .popup {
+  position: absolute;
+  left: 125px;
+  top: 86px;
+  width: 988px;
+  height: 546px;
+  animation: pop-in 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  transform-origin: 85% 100%;
+}
+
+.gacha-app .popup__bubble {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 980px;
+  height: 526.012px;
+}
+
+.gacha-app .popup__map {
+  position: absolute;
+  left: 34px;
+  top: 40px;
+  width: 289px;
+  height: 405px;
+  border: 11.679px solid #fff;
+  box-shadow: var(--shadow);
+}
+.gacha-app .popup__map-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+.gacha-app .popup__pin {
+  position: absolute;
+  width: 37px;
+  height: 43.167px;
+  margin: -11.679px 0 0 -11.679px;
+}
+
+.gacha-app .popup__text {
+  position: absolute;
+  left: 343px;
+  top: 40px;
+  width: 565px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.gacha-app .popup__message {
+  font-size: 24px;
+  line-height: normal;
+  color: var(--text100);
+}
+.gacha-app .popup__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text90);
+  white-space: nowrap;
+}
+.gacha-app .popup__region {
+  font-size: 28px;
+  line-height: normal;
+}
+.gacha-app .popup__category {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* 장소 카드 4개 */
+.gacha-app .places {
+  position: absolute;
+  left: 343px;
+  top: 126px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.gacha-app .place {
+  position: relative;
+  width: 129px;
+  height: 319px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  text-align: left;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+.gacha-app .place:not(:disabled):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(93, 80, 58, 0.25);
+}
+
+.gacha-app .place__type {
+  position: absolute;
+  top: 29px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 24px;
+  line-height: normal;
+  color: #000;
+  white-space: nowrap;
+}
+
+.gacha-app .place__divider {
+  position: absolute;
+  top: 71px;
+  left: 15px;
+  width: 99px;
+  height: 0;
+}
+.gacha-app .place__divider img {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+}
+
+.gacha-app .place__spots {
+  position: absolute;
+  top: 102px;
+  left: 0;
+  right: 8px;
+  padding-left: 27px;
+  list-style: disc;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--paper-text);
+  word-break: keep-all;
+}
+.gacha-app .place__spots li::marker {
+  font-size: 14px;
+}
+
+.gacha-app .places__arrow {
+  position: relative;
+  width: 12.033px;
+  height: 19px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gacha-app .places__arrow-inner {
+  position: relative;
+  flex: none;
+  width: 19px;
+  height: 12.033px;
+  transform: rotate(90deg);
+}
+.gacha-app .places__arrow-inner img {
+  position: absolute;
+  top: 2.55%;
+  bottom: 25%;
+  left: 10.91%;
+  right: 10.91%;
+  width: 78.18%;
+  height: 72.45%;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* ────────────────────────────────────────────────
+   서버 상태 표시 (카드 뱃지, 핀, 버튼 안내)
+   ──────────────────────────────────────────────── */
+.gacha-app .draw-panel__reason {
+  width: 190px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--paper-text);
+  word-break: keep-all;
+}
+
+.gacha-app .card__badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--paper-text);
+  background: var(--paper);
+}
+.gacha-app .card__badge.is-conquered {
+  color: #fff;
+  background: #c22035;
+}
+.gacha-app .card.is-unplayable .card__btn {
+  filter: grayscale(0.7);
+}
+
+.gacha-app .map__pin.is-conquered {
+  filter: hue-rotate(90deg) saturate(0.6);
+}
+
+/* 팝업 장소 카드 (서버 데이터용 보조 스타일) */
+.gacha-app .place.is-cleared {
+  background: #d8c48f;
+}
+.gacha-app .place:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+.gacha-app .place__spots {
+  font-size: 15px;
+}
+.gacha-app .place__spots .place__spot-main {
+  font-size: 18px;
+  list-style: none;
+  margin-left: -14px;
+  margin-bottom: 4px;
+  color: var(--text90);
+}
+.gacha-app .place__spots li.is-done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.gacha-app .place__progress {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 14px;
+  color: var(--paper-line);
+}
+.gacha-app .places__empty {
+  font-size: 18px;
+  color: var(--text100);
+}
+
+/* ────────────────────────────────────────────────
+   공통 버튼 / 모달 / 토스트
+   ──────────────────────────────────────────────── */
+.gacha-app .paper-button {
+  padding: 10px 18px;
+  font-size: 18px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+  transition:
+    transform 0.12s,
+    filter 0.12s;
+}
+.gacha-app .paper-button:not(:disabled):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+.gacha-app .paper-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.gacha-app .paper-button.is-primary {
+  color: #fff;
+  background: #c22035;
+  border-color: #93182c;
+}
+
+.gacha-app .link-button {
+  font-size: 18px;
+  color: var(--text100);
+}
+.gacha-app .link-button:hover {
+  color: var(--text90);
+}
+
+.gacha-app .overlay.is-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 16;
+}
+
+.gacha-app .modal {
+  width: 560px;
+  max-height: 640px;
+  overflow: auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f6f2e8;
+  border: 1px solid var(--paper-line);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: pop-in 0.22s ease-out;
+}
+.gacha-app .modal > .paper-button {
+  align-self: flex-end;
+}
+.gacha-app .modal__title {
+  font-size: 28px;
+  font-weight: 400;
+}
+.gacha-app .modal__loading {
+  font-size: 18px;
+  color: var(--text100);
+}
+
+.gacha-app .phrases {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gacha-app .phrases li {
+  padding: 14px 16px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 8px;
+}
+.gacha-app .phrases__ko {
+  font-size: 22px;
+}
+.gacha-app .phrases__rom {
+  font-size: 14px;
+  color: var(--paper-line);
+}
+.gacha-app .phrases__meaning {
+  margin-top: 4px;
+  font-size: 16px;
+}
+.gacha-app .phrases__when {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--paper-text);
+}
+
+.gacha-app .clear {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  animation: pop-in 0.3s ease-out;
+}
+.gacha-app .clear__character {
+  width: 220px;
+  filter: drop-shadow(0 0 30px #fff);
+  animation: float 3s ease-in-out infinite;
+}
+.gacha-app .clear__title {
+  padding: 24px 60px;
+  font-size: 32px;
+  background: #f6f2e8;
+  border: 1px solid var(--paper-line);
+  border-radius: 12px;
+}
+.gacha-app .clear__actions {
+  display: flex;
+  gap: 12px;
+}
+
+.gacha-app .toast {
+  position: absolute;
+  left: 50%;
+  top: 76px;
+  z-index: 30;
+  transform: translateX(-50%);
+  max-width: 720px;
+  padding: 12px 22px;
+  font-size: 18px;
+  color: #fff;
+  background: rgba(58, 58, 58, 0.92);
+  border-radius: 10px;
+  animation: toast-in 0.2s ease-out;
+}
+.gacha-app .toast.is-error {
+  background: rgba(194, 32, 53, 0.95);
+}
+.gacha-app .toast.is-reward {
+  color: var(--text90);
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+}
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+
+.gacha-app .screen-loading {
+  position: absolute;
+  inset: 60px 0 0;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  color: var(--text100);
+}
+
+/* ────────────────────────────────────────────────
+   장소 화면 (StageScreen)
+   ──────────────────────────────────────────────── */
+.gacha-app .stage-screen {
+  position: absolute;
+  inset: 60px 0 0;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 48px;
+  padding: 44px 80px 40px;
+}
+
+.gacha-app .stage-screen__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.gacha-app .photo-frame {
+  width: 100%;
+  height: 300px;
+  border: 11.679px solid #fff;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.gacha-app .photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gacha-app .stage-screen__region {
+  margin-top: 8px;
+  font-size: 20px;
+  color: var(--text100);
+}
+.gacha-app .stage-screen__region span {
+  font-size: 16px;
+}
+.gacha-app .stage-screen__title {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--text90);
+}
+.gacha-app .stage-screen__title small {
+  font-size: 20px;
+  color: var(--text100);
+}
+.gacha-app .stage-screen__story {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--paper-text);
+  word-break: keep-all;
+}
+
+.gacha-app .progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.gacha-app .progress__bar {
+  flex: 1;
+  height: 10px;
+  background: #ddd6c8;
+  border-radius: 999px;
+  overflow: hidden;
+}
+.gacha-app .progress__bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #f95452, #c22035);
+  transition: width 0.4s;
+}
+.gacha-app .progress__text {
+  font-size: 16px;
+  color: var(--text90);
+}
+
+.gacha-app .quest-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: auto;
+  padding: 4px 4px 80px;
+}
+
+.gacha-app .quest-card {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+.gacha-app .quest-card:not(:disabled):hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 12px rgba(93, 80, 58, 0.2);
+}
+.gacha-app .quest-card.is-locked {
+  opacity: 0.55;
+  cursor: not-allowed;
+  filter: grayscale(0.4);
+}
+.gacha-app .quest-card.is-completed {
+  background: #d8c48f;
+}
+
+.gacha-app .quest-card__code {
+  font-size: 24px;
+  color: var(--paper-line);
+}
+.gacha-app .quest-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.gacha-app .quest-card__title {
+  font-size: 22px;
+  color: #000;
+}
+.gacha-app .quest-card__npc {
+  font-size: 15px;
+  color: var(--paper-line);
+}
+.gacha-app .quest-card__situation {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--paper-text);
+  word-break: keep-all;
+}
+.gacha-app .quest-card__side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.gacha-app .quest-card__status {
+  padding: 3px 10px;
+  font-size: 14px;
+  border-radius: 999px;
+  background: #f6f2e8;
+}
+.gacha-app .quest-card.is-in_progress .quest-card__status,
+.gacha-app .quest-card.is-available .quest-card__status {
+  color: #fff;
+  background: #c22035;
+}
+.gacha-app .quest-card__reward {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 15px;
+}
+
+.gacha-app .back-to-gacha {
+  position: absolute;
+  right: 45px;
+  bottom: 40px;
+  width: 235px;
+  height: 73px;
+  font-size: 28px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(93, 80, 58, 0.2);
+}
+.gacha-app .back-to-gacha:hover {
+  filter: brightness(1.04);
+}
+
+/* ────────────────────────────────────────────────
+   퀘스트 대화 화면 (QuestChat)
+   ──────────────────────────────────────────────── */
+.gacha-app .chat-screen {
+  position: absolute;
+  inset: 60px 0 0;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  padding: 28px 60px 28px 80px;
+}
+
+.gacha-app .chat-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 0;
+}
+.gacha-app .chat-side__code {
+  margin-top: 8px;
+  font-size: 18px;
+  color: var(--paper-line);
+}
+.gacha-app .chat-side__title {
+  font-size: 30px;
+  font-weight: 400;
+}
+.gacha-app .chat-side__npc {
+  font-size: 16px;
+  color: var(--text100);
+}
+.gacha-app .chat-side__situation {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--paper-text);
+  word-break: keep-all;
+}
+
+.gacha-app .missions {
+  width: 100%;
+  margin: 12px 0;
+  padding: 16px 18px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+}
+.gacha-app .missions__head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+.gacha-app .missions ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gacha-app .missions li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: var(--paper-text);
+}
+.gacha-app .missions li.is-done {
+  color: var(--text100);
+  text-decoration: line-through;
+}
+.gacha-app .missions__check {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  color: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 4px;
+  background: #f6f2e8;
+}
+.gacha-app .missions li.is-done .missions__check {
+  background: #c22035;
+  border-color: #c22035;
+}
+
+.gacha-app .chat-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.gacha-app .chat-log {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 4px 6px;
+}
+
+.gacha-app .bubble-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 78%;
+}
+.gacha-app .bubble-row.is-npc {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+.gacha-app .bubble-row.is-me {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+.gacha-app .bubble-row__name {
+  font-size: 14px;
+  color: var(--paper-line);
+}
+.gacha-app .bubble {
+  padding: 12px 16px;
+  font-size: 19px;
+  line-height: 1.55;
+  border-radius: 14px;
+  word-break: keep-all;
+  white-space: pre-wrap;
+}
+.gacha-app .is-npc .bubble {
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-top-left-radius: 4px;
+}
+.gacha-app .is-me .bubble {
+  color: #fff;
+  background: #3e5868;
+  border-top-right-radius: 4px;
+}
+
+.gacha-app .bubble.is-typing {
+  display: flex;
+  gap: 5px;
+  padding: 16px 18px;
+}
+.gacha-app .bubble.is-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--paper-line);
+  animation: typing 1s infinite ease-in-out;
+}
+.gacha-app .bubble.is-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.gacha-app .bubble.is-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  40% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.gacha-app .correction {
+  max-width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  background: #fff6f3;
+  border: 1px dashed #d95a61;
+  border-radius: 10px;
+}
+.gacha-app .correction s {
+  color: var(--text100);
+}
+.gacha-app .correction b {
+  font-weight: 400;
+  color: #c22035;
+}
+.gacha-app .correction__reason {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--paper-text);
+}
+
+.gacha-app .tip {
+  align-self: center;
+  max-width: 85%;
+  padding: 10px 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--paper-text);
+  background: #f3ead2;
+  border-left: 4px solid var(--paper-line);
+  border-radius: 6px;
+}
+.gacha-app .tip strong {
+  font-weight: 400;
+  margin-right: 6px;
+  color: var(--paper-line);
+}
+
+.gacha-app .suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.gacha-app .chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 14px;
+  text-align: left;
+  background: #f6f2e8;
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+}
+.gacha-app .chip:not(:disabled):hover {
+  background: var(--paper);
+}
+.gacha-app .chip__ko {
+  font-size: 17px;
+}
+.gacha-app .chip__rom,
+.gacha-app .chip__meaning {
+  font-size: 12px;
+  color: var(--paper-line);
+}
+
+.gacha-app .chat-input {
+  display: flex;
+  gap: 8px;
+}
+.gacha-app .chat-input input {
+  flex: 1;
+  padding: 12px 16px;
+  font: inherit;
+  font-size: 18px;
+  background: #fff;
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+  outline: none;
+}
+.gacha-app .chat-input input:focus {
+  box-shadow: 0 0 0 3px rgba(226, 207, 163, 0.8);
+}
+.gacha-app .chat-input button {
+  padding: 0 22px;
+  font-size: 18px;
+  color: #fff;
+  background: #c22035;
+  border-radius: 10px;
+}
+.gacha-app .chat-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gacha-app .quest-done {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+}
+.gacha-app .quest-done p {
+  font-size: 22px;
+}
+.gacha-app .quest-done__actions {
+  display: flex;
+  gap: 8px;
+}
