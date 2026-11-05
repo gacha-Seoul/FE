@@ -1,4 +1,5 @@
 import os
+import json
 import unittest
 from types import SimpleNamespace
 from unittest.mock import patch
@@ -85,8 +86,11 @@ class ReviewTests(unittest.TestCase):
     def test_crewai_configuration_and_reject_invalid_output(self):
         # Real Agent/Task/Crew construction; only provider execution is replaced.
         valid = self.evaluation(SCENARIOS[0], [], "전집이 어디예요?")
-        with patch("crewai.Crew.kickoff", return_value=SimpleNamespace(pydantic=valid)):
-            self.assertEqual(evaluate(SCENARIOS[0], [], "전집이 어디예요?"), valid)
+        with patch("crewai.Crew.kickoff", return_value=SimpleNamespace(pydantic=valid)) as kickoff:
+            self.assertEqual(evaluate(SCENARIOS[0], [{"answer": "전집이요."}], "어디예요?"), valid)
+            data = json.loads(kickoff.call_args.kwargs["inputs"]["review_data"])
+            self.assertEqual(data["userAnswer"], "전집이요.\n어디예요?")
+            self.assertEqual(data["latestAnswer"], "어디예요?")
         invalid = Evaluation(criteria=[CriterionEvaluation(id="invented", met=True, evidence="없는 조건")],
                              feedback="좋았어요", improvedAnswer="예문")
         for output in (None, invalid):

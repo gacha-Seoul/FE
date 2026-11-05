@@ -42,7 +42,10 @@ def evaluate(scenario: dict, history: list[dict], answer: str) -> Evaluation:
     result = Crew(agents=[coach], tasks=[task], process=Process.sequential,
                   memory=False, cache=False, verbose=False).kickoff(inputs={
         "review_data": json.dumps({"scenario": scenario, "history": history,
-                                   "userAnswer": answer}, ensure_ascii=False)
+                                   "latestAnswer": answer,
+                                   "userAnswer": "\n".join(
+                                       [turn["answer"] for turn in history] + [answer]
+                                   )}, ensure_ascii=False)
     })
     if not isinstance(result.pydantic, Evaluation):
         raise ValueError("Missing structured evaluation")
