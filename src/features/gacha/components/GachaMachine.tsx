@@ -38,6 +38,16 @@ export default function GachaMachine({ spinning }: { spinning: boolean }) {
         style={{ left: 95, top: 739, width: 552, height: 65 }}
       />
 
+      <img
+        className={`abs machine ${spinning ? 'is-spinning' : ''}`}
+        src="/assets/machine.png"
+        alt="가챠 기계"
+        style={{ left: 201, top: 170, width: 334.988, height: 604.098 }}
+      />
+      {/*
+        machine.png는 Figma 내보내기에서 유리가 불투명하게 구워져서 캡슐을 기계 "위"에 올리고
+        유리 영역(68:693)으로 잘라낸 뒤, 반투명 유리색(rgba(223,238,243,0.7))을 다시 덮어 원래 느낌을 재현
+      */}
       <div className={`capsules ${spinning ? 'is-spinning' : ''}`}>
         <img
           className="abs"
@@ -58,14 +68,8 @@ export default function GachaMachine({ spinning }: { spinning: boolean }) {
             />
           </div>
         ))}
+        <span className="abs machine-glass" />
       </div>
-
-      <img
-        className={`abs machine ${spinning ? 'is-spinning' : ''}`}
-        src="/assets/machine.png"
-        alt="가챠 기계"
-        style={{ left: 201, top: 170, width: 334.988, height: 604.098 }}
-      />
     </>
   )
 }

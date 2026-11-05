@@ -37,7 +37,9 @@ function boot(): Promise<Boot> {
       demoRegion = res.gacha.region
       window.history.replaceState(null, '', window.location.pathname) // 새로고침 시 사용자 또 생기지 않게
     } else {
-      const saved = loadUserId()
+      if (params.has('new')) window.history.replaceState(null, '', window.location.pathname)
+      // ?new : 저장된 사용자를 무시하고 새 사용자로 시작 (백엔드 initial-coins 바꾼 뒤 테스트할 때)
+      const saved = params.has('new') ? null : loadUserId()
       try {
         if (saved === null) throw new ApiError(404, 'no user')
         user = await api.getUser(saved)
