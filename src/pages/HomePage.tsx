@@ -7,6 +7,7 @@ export default function HomePage() {
       <h1>서울의 이야기를<br />따라 걷다.</h1>
       <p>지역의 공간에서 만나고, 이야기하고, 경험하는 K-문화.</p>
       <Link className="button" to="/play/myongji">3D 연결 확인하기 →</Link>
+      <p><Link to="/review/market">Q5 · 전통시장 회화 복습하기 →</Link></p>
     </section>
     <section className="cards" aria-label="구현 준비 상태">
       <article><span>01</span><h2>화면</h2><p>Figma를 기준으로 가챠·지역 지도·퀘스트 화면을 구현할 자리입니다.</p></article>
