@@ -97,6 +97,7 @@
 }
 
 .gacha-app .header__logo {
+  text-decoration: none;
   font-size: 28px;
   color: var(--text100);
   white-space: nowrap;

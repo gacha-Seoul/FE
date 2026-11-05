@@ -31,8 +31,9 @@ React 19와 Fiber 9의 호환 관계는 [공식 문서](https://r3f.docs.pmnd.rs
 
 ## 현재 준비된 범위
 
-- **가챠 메인(`/`)**: Figma 1-1 가챠 화면, 1-2 결과 팝업, 장소 화면, 퀘스트 NPC 대화를 서울 가챠 API(Spring)에 연결.
-  코드는 `src/features/gacha/`, 기존 시작 화면은 `/dev`로 옮김. 자세한 내용은 아래 **가챠 화면** 참고.
+- **랜딩(`/`)**: gui 디자인 톤(색·폰트·전통 문양·가챠 기계·캐릭터)으로 만든 소개 페이지, 한/영 전환. `src/features/landing/`
+- **가챠 메인(`/gacha`)**: Figma 1-1 가챠 화면, 1-2 결과 팝업, 장소 화면, 퀘스트 NPC 대화를 서울 가챠 API(Spring)에 연결.
+  코드는 `src/features/gacha/`, 기존 시작 화면은 `/dev`. 자세한 내용은 아래 **가챠 화면** 참고.
 
 - Q5 전통시장 복습 화면 `/review/market`과 CrewAI 평가 서비스 추가.
   실행·에이전트 설계는 [docs/Q5_AGENT.md](docs/Q5_AGENT.md), 계약은 [docs/API.md](docs/API.md) 참고.
@@ -66,14 +67,14 @@ public/
 
 구현 순서와 연결 규칙은 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), 폰트는 [FONTS.md](FONTS.md)를 참고합니다.
 
-## 가챠 화면 (`src/features/gacha`)
+## 가챠 화면 (`/gacha`, `src/features/gacha`)
 
 ```sh
 npm run assets   # Figma 이미지/SVG → public/assets (링크 만료 2026-11-13 무렵, 받은 뒤 커밋)
 npm run dev      # /api → VITE_API_PROXY(기본 http://localhost:8080), /api/review → 127.0.0.1:8001
 ```
 
-- `http://localhost:5173/?demo` : `POST /api/demo/start`로 새 사용자 + 첫 가챠(서대문구) 후 결과 팝업부터 시작 (발표용)
+- `http://localhost:5173/gacha?demo` : `POST /api/demo/start`로 새 사용자 + 첫 가챠(서대문구) 후 결과 팝업부터 시작 (발표용)
 - 사용자 ID는 localStorage(`gacha-seoul:userId`)에 저장. 404면 새로 생성.
 - 화면은 Figma 프레임(1280×832)을 화면 크기에 맞춰 확대·축소. 스타일은 `.gacha-app` 아래로만 적용.
 

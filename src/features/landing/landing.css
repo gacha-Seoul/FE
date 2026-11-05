@@ -1,0 +1,582 @@
+/* 랜딩 페이지. gui 토큰(.gacha-app 변수: --bg, --paper, --paper-line ...)을 그대로 사용 */
+.gacha-app.lp {
+  --red: #c22035;
+  --red-grad: linear-gradient(121deg, #f95452 1.5%, #c22035 101%);
+  --maxw: 1180px;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+:where(.gacha-app.lp) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── 버튼 ─────────────────────────────── */
+.gacha-app .lp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 30px;
+  font-size: 22px;
+  color: #fff;
+  background: var(--red-grad);
+  border-radius: 12px;
+  box-shadow:
+    0 6px 0 #93182c,
+    0 12px 24px rgba(147, 24, 44, 0.25);
+  transition:
+    transform 0.12s,
+    box-shadow 0.12s;
+}
+.gacha-app .lp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 0 #93182c,
+    0 16px 28px rgba(147, 24, 44, 0.3);
+}
+.gacha-app .lp-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 2px 0 #93182c,
+    0 6px 12px rgba(147, 24, 44, 0.2);
+}
+.gacha-app .lp-btn--ghost {
+  color: var(--text90);
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  box-shadow: 0 6px 0 #b9a676;
+}
+.gacha-app .lp-btn--ghost:hover {
+  box-shadow: 0 8px 0 #b9a676;
+}
+.gacha-app .lp-btn--small {
+  padding: 8px 18px;
+  font-size: 18px;
+  box-shadow: 0 3px 0 #93182c;
+}
+.gacha-app .lp-btn--small:hover {
+  box-shadow: 0 5px 0 #93182c;
+}
+
+/* ── 상단 바 ─────────────────────────────── */
+.gacha-app .lp-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 64px;
+  padding: 0 clamp(20px, 6vw, 80px);
+  background: rgba(238, 235, 228, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--line);
+}
+.gacha-app .lp-nav__logo {
+  font-size: 28px;
+  color: var(--text90);
+}
+.gacha-app .lp-nav__links {
+  display: flex;
+  gap: 28px;
+  font-size: 20px;
+  color: var(--text100);
+}
+.gacha-app .lp-nav__links a:hover {
+  color: var(--text90);
+}
+.gacha-app .lp-nav__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.gacha-app .lp-lang {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 20px;
+  color: var(--text80);
+}
+.gacha-app .lp-lang button {
+  color: var(--text100);
+}
+.gacha-app .lp-lang button.is-active {
+  color: var(--text90);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* ── 히어로 ─────────────────────────────── */
+.gacha-app .lp-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  max-width: var(--maxw);
+  min-height: calc(100dvh - 64px);
+  margin: 0 auto;
+  padding: 40px clamp(20px, 5vw, 60px) 60px;
+}
+
+.gacha-app .lp-deco {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.gacha-app .lp-deco--left {
+  left: calc(-1 * clamp(40px, 8vw, 140px));
+  top: 30px;
+  width: 164px;
+}
+.gacha-app .lp-deco--right {
+  right: calc(-1 * clamp(40px, 8vw, 140px));
+  bottom: 20px;
+  width: 196px;
+}
+.gacha-app .lp-cloud {
+  position: absolute;
+  pointer-events: none;
+  animation: lp-drift 9s ease-in-out infinite alternate;
+}
+.gacha-app .lp-cloud--a {
+  left: 3%;
+  top: 62%;
+  width: 124px;
+}
+.gacha-app .lp-cloud--b {
+  right: 44%;
+  top: 14%;
+  width: 105px;
+  transform: scaleX(-1);
+  animation-delay: -4s;
+}
+@keyframes lp-drift {
+  to {
+    translate: 24px 0;
+  }
+}
+
+.gacha-app .lp-eyebrow {
+  margin-bottom: 18px;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--paper-line);
+}
+.gacha-app .lp-hero__title {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.25;
+  color: var(--text90);
+  word-break: keep-all;
+}
+.gacha-app .lp-hero__title em {
+  font-style: normal;
+  color: var(--red);
+}
+.gacha-app .lp-hero__body {
+  max-width: 520px;
+  margin-top: 22px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: var(--text100);
+  word-break: keep-all;
+}
+.gacha-app .lp-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+.gacha-app .lp-coin {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  padding: 6px 14px 6px 8px;
+  font-size: 17px;
+  color: var(--paper-text);
+  background: #f6f2e8;
+  border: 1px dashed var(--paper-line);
+  border-radius: 999px;
+}
+
+/* 가챠 기계: 1280x832 프레임 좌표를 쓰는 GachaMachine을 잘라서 배치 (기계+그림자 영역 552x634) */
+.gacha-app .lp-hero__machine {
+  --s: 1;
+  position: relative;
+  justify-self: center;
+  width: calc(552px * var(--s));
+  height: calc(634px * var(--s));
+}
+.gacha-app .lp-hero__machine-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1280px;
+  height: 832px;
+  transform: scale(var(--s)) translate(-95px, -170px);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+.gacha-app .lp-hero__character {
+  position: absolute;
+  right: calc(-40px * var(--s));
+  bottom: calc(10px * var(--s));
+  width: calc(180px * var(--s));
+  filter: drop-shadow(0 0 24px #fff);
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ── 공통 섹션 ─────────────────────────────── */
+.gacha-app .lp-section {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 90px clamp(20px, 5vw, 60px);
+  scroll-margin-top: 64px;
+}
+.gacha-app .lp-h2 {
+  font-size: clamp(30px, 3.6vw, 44px);
+  color: var(--text90);
+  word-break: keep-all;
+}
+.gacha-app .lp-lead {
+  max-width: 560px;
+  margin-top: 14px;
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--text100);
+  word-break: keep-all;
+}
+.gacha-app .lp-paper {
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-radius: 10px;
+}
+
+/* 플레이 방법 */
+.gacha-app .lp-steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 36px;
+  counter-reset: step;
+}
+.gacha-app .lp-steps li {
+  position: relative;
+  padding: 30px 28px 32px;
+  transition: transform 0.15s;
+}
+.gacha-app .lp-steps li:hover {
+  transform: translateY(-4px) rotate(-0.5deg);
+}
+.gacha-app .lp-steps li + li::before {
+  content: '';
+  position: absolute;
+  left: -19px;
+  top: 50%;
+  border: 7px solid transparent;
+  border-left: 10px solid var(--paper-line);
+  translate: 0 -50%;
+}
+.gacha-app .lp-steps__no {
+  font-size: 18px;
+  color: var(--paper-line);
+}
+.gacha-app .lp-steps h3 {
+  margin: 10px 0 12px;
+  padding-bottom: 14px;
+  font-size: 26px;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(141, 125, 94, 0.5);
+}
+.gacha-app .lp-steps p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--paper-text);
+  word-break: keep-all;
+}
+
+/* 지역 */
+.gacha-app .lp-regions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 56px;
+}
+.gacha-app .lp-region-cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 30px;
+}
+.gacha-app .lp-region-cards li {
+  position: relative;
+  aspect-ratio: 114 / 123;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #fff;
+  text-align: center;
+  transition: transform 0.15s;
+}
+.gacha-app .lp-region-cards li:hover {
+  transform: translateY(-6px) scale(1.04);
+}
+.gacha-app .lp-region-cards img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gacha-app .lp-region-cards__dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+.gacha-app .lp-region-cards__cat,
+.gacha-app .lp-region-cards__name {
+  position: relative;
+}
+.gacha-app .lp-region-cards__cat {
+  font-size: 13px;
+}
+.gacha-app .lp-region-cards__name {
+  font-size: 17px;
+}
+
+.gacha-app .lp-map {
+  position: relative;
+  aspect-ratio: 480.8 / 441;
+  border: 11.679px solid #fff;
+  box-shadow: var(--shadow);
+  rotate: 1.5deg;
+}
+.gacha-app .lp-map__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+.gacha-app .lp-map__pin {
+  position: absolute;
+  width: 6%;
+  translate: -50% -100%;
+  transform-origin: 50% 100%;
+  animation: lp-pin 2.4s ease-in-out infinite;
+}
+@keyframes lp-pin {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  90% {
+    transform: translateY(0) scaleY(0.92);
+  }
+}
+
+/* 퀘스트 미리보기 */
+.gacha-app .lp-quest {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 56px;
+}
+.gacha-app .lp-quest__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 28px;
+}
+.gacha-app .lp-quest__list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  font-size: 20px;
+}
+.gacha-app .lp-quest__list li > span:first-child {
+  font-size: 16px;
+  color: var(--paper-line);
+}
+.gacha-app .lp-quest__reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  font-size: 15px;
+  color: var(--paper-text);
+}
+
+.gacha-app .lp-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(93, 80, 58, 0.12);
+}
+.gacha-app .lp-chat__name {
+  font-size: 14px;
+  color: var(--paper-line);
+}
+.gacha-app .lp-chat__bubble {
+  max-width: 80%;
+  padding: 12px 18px;
+  font-size: 20px;
+  border-radius: 14px;
+}
+.gacha-app .lp-chat__bubble.is-npc {
+  align-self: flex-start;
+  margin-top: -6px;
+  background: var(--paper);
+  border: 1px solid var(--paper-line);
+  border-top-left-radius: 4px;
+}
+.gacha-app .lp-chat__bubble.is-me {
+  align-self: flex-end;
+  color: #fff;
+  background: #3e5868;
+  border-top-right-radius: 4px;
+}
+.gacha-app .lp-chat__fix {
+  align-self: flex-end;
+  padding: 8px 14px;
+  font-size: 17px;
+  background: #fff6f3;
+  border: 1px dashed #d95a61;
+  border-radius: 10px;
+}
+.gacha-app .lp-chat__fix s {
+  color: var(--text100);
+}
+.gacha-app .lp-chat__fix b {
+  font-weight: 400;
+  color: var(--red);
+}
+.gacha-app .lp-chat__tip {
+  margin-top: 6px;
+  padding: 10px 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--paper-text);
+  background: #f3ead2;
+  border-left: 4px solid var(--paper-line);
+  border-radius: 6px;
+}
+.gacha-app .lp-chat__tip strong {
+  margin-right: 6px;
+  font-weight: 400;
+  color: var(--paper-line);
+}
+
+/* 마지막 CTA */
+.gacha-app .lp-final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin: 40px auto 0;
+  padding: 70px 24px 90px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.7), transparent 60%),
+    linear-gradient(180deg, transparent, rgba(226, 207, 163, 0.45));
+}
+.gacha-app .lp-final__character {
+  width: 170px;
+  filter: drop-shadow(0 0 30px #fff);
+  animation: float 3s ease-in-out infinite;
+}
+.gacha-app .lp-final h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  word-break: keep-all;
+}
+
+.gacha-app .lp-footer {
+  padding: 28px;
+  font-size: 15px;
+  text-align: center;
+  color: var(--text100);
+  border-top: 2px solid var(--line);
+}
+
+/* ── 반응형 ─────────────────────────────── */
+@media (max-width: 1100px) {
+  .gacha-app .lp-hero__machine {
+    --s: 0.8;
+  }
+}
+@media (max-width: 900px) {
+  .gacha-app .lp-nav__links {
+    display: none;
+  }
+  .gacha-app .lp-hero,
+  .gacha-app .lp-regions,
+  .gacha-app .lp-quest {
+    grid-template-columns: 1fr;
+  }
+  .gacha-app .lp-hero {
+    text-align: center;
+    min-height: auto;
+  }
+  .gacha-app .lp-hero__body {
+    margin-inline: auto;
+  }
+  .gacha-app .lp-hero__actions {
+    justify-content: center;
+  }
+  .gacha-app .lp-hero__machine {
+    --s: 0.62;
+    grid-row: 1;
+  }
+  .gacha-app .lp-deco {
+    display: none;
+  }
+  .gacha-app .lp-steps {
+    grid-template-columns: 1fr;
+  }
+  .gacha-app .lp-steps li + li::before {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .gacha-app .lp-nav__logo {
+    font-size: 22px;
+  }
+  .gacha-app .lp-lang {
+    display: none;
+  }
+  .gacha-app .lp-hero__machine {
+    --s: 0.5;
+  }
+  .gacha-app .lp-region-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gacha-app.lp *,
+  .gacha-app.lp *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}
